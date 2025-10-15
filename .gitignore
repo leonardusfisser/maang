@@ -1,0 +1,37 @@
+# Build artifacts
+/target/
+/dist/
+
+# Runtime data
+/data/**
+/logs/**
+/backups/**
+/examples/**/*.log
+
+# Environment & secrets
+*.env
+config/.env*
+!.env.sample
+!.env.production.example
+
+# Machine-specific or transient
+BUILDINFO
+.DS_Store
+*.swp
+*.tmp
+
+# IDEs & editors
+.idea/
+.vscode/
+helix/
+.editor/
+.editorconfig
+
+# OS / tooling
+Thumbs.db
+*.bak
+*.old
+
+# Rust package manager & tooling
+Cargo.lock
+!apps/**/Cargo.lock

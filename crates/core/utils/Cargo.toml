@@ -1,0 +1,11 @@
+[package]
+name = "core-utils"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+time.workspace = true
+uuid.workspace = true
+
+[lib]
+path = "./src/lib.rs"

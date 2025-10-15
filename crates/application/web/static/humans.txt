@@ -1,0 +1,10 @@
+/* TEAM */
+Developer: Leon
+Language: Rust
+Location: Netherlands
+
+/* THANKS */
+Built with ❤️ using Rust, Actix, and Askama.
+
+/* SITE */
+https://littlepepe.com

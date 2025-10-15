@@ -1,0 +1,10 @@
+[build]
+# Combine both flags under one key so they merge correctly.
+rustflags = [
+    "-C", "link-arg=-s",   # Strip symbols from final binary (smaller release build)
+    "-Dwarnings"           # Deny all compiler warnings (CI-safe)
+]
+
+[env]
+# Disable backtraces in prod; you can set RUST_BACKTRACE=1 locally when debugging.
+RUST_BACKTRACE = "0"

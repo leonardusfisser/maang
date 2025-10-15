@@ -1,0 +1,10 @@
+[package]
+name = "core-errors"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+thiserror.workspace = true
+
+[lib]
+path = "./src/lib.rs"

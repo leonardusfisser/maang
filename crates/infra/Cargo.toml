@@ -1,0 +1,34 @@
+[package]
+name = "infra"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default     = []
+infra-db          = ["dep:infra-db"]
+infra-cache       = ["dep:infra-cache"]
+infra-email       = ["dep:infra-email"]
+infra-jwt         = ["dep:infra-jwt"]
+infra-metrics     = ["dep:infra-metrics"]
+infra-oauth       = ["dep:infra-oauth"]
+infra-payment     = ["dep:infra-payment"]
+infra-pwd         = ["dep:infra-pwd"]
+infra-queue       = ["dep:infra-queue"]
+infra-ratelimit   = ["dep:infra-ratelimit"]
+infra-session     = ["dep:infra-session"]
+infra-storage     = ["dep:infra-storage"]
+
+[dependencies]
+infra-cache     = { path = "./cache",     optional = true }
+infra-db        = { path = "./db",        optional = true }
+infra-email     = { path = "./email",     optional = true }
+infra-jwt       = { path = "./jwt",       optional = true }
+infra-metrics   = { path = "./metrics",   optional = true }
+infra-oauth     = { path = "./oauth",     optional = true }
+infra-payment   = { path = "./payment",   optional = true }
+infra-pwd       = { path = "./pwd",       optional = true }
+infra-queue     = { path = "./queue",     optional = true }
+infra-ratelimit = { path = "./ratelimit", optional = true }
+infra-session   = { path = "./session",   optional = true }
+infra-storage   = { path = "./storage",   optional = true }
+

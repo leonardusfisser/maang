@@ -1,0 +1,18 @@
+[package]
+name = "application"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+domain = { path = "../domain" }
+core = { path = "../core" }
+
+core-domain-errors = { path = "../core/errors" }
+core-observability = { path = "../core/observability" }
+
+actix-web.workspace = true
+askama.workspace = true
+tracing.workspace = true
+
+[lib]
+path = "./src/lib.rs"

@@ -1,0 +1,17 @@
+[package]
+name = "web"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+actix-web.workspace = true
+tracing.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+ulid.workspace = true
+
+application = { path = ".." }
+core-errors = { path = "../../core/errors" }
+
+[lib]
+path = "src/lib.rs"
