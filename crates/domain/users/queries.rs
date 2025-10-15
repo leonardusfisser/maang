@@ -1,1 +1,2 @@
-#![forbid(unsafe_code)]
+#![forbid(unsa#![forbid(unsafe_code)]
+#![deny(warnings)]fe_code)]

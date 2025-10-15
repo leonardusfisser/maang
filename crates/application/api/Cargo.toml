@@ -1,0 +1,12 @@
+[package]
+name = "application-api"
+version = "0.1.0"
+edition = { workspace = true }
+
+[dependencies]
+actix-web.workspace = true
+serde.workspace = true
+tracing.workspace = true
+
+domain = { path = "../../domain" }
+cratecore-errors = { package = "core-errors", path = "../../core/errors" }

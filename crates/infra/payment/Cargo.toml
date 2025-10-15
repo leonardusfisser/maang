@@ -1,5 +1,5 @@
 [package]
-name = "crate-infra-payment"
+name = "infra-payment"
 version = "0.1.0"
 edition = "2024"
 
