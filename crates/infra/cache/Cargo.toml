@@ -1,6 +1,10 @@
 [package]
-name = "auth"
+name = "crate-infra-cache"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+
+
+[lib]
+path = "./src/lib.rs"
