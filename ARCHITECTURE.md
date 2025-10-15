@@ -3,14 +3,16 @@ production like facebook amazon apple netflix google
 safe secure fast minimal libraries low maintenance 
 
 2.LAYERED ARCHITECTURE
-Production 4-layer Rust architecture, typed errors, tenant isolation, observability, and CI safety rules.
+Production 4-layer Rust architecture 
+typed errors tenant isolation observability
+and CI safety rules.
+apps - lillpepe bigpepe
 
 3.CRATE
-application - application, web, api, cli
-apps - lillpepe 
-core - config, errors, observability, utils
-domain - users, tenants, products, services, payments, photos, videos
-infrastructure - postgress, mongodb, surrealdb, stripe, cache, storage, email, metrics 
+application - api cli web
+core - config errors observability utils
+domain - users tenants products services payments photos videos
+infra - surrealdb stripe cache storage email metrics 
 
 4.DATA FLOW & CONTEXT
 
@@ -18,17 +20,18 @@ infrastructure - postgress, mongodb, surrealdb, stripe, cache, storage, email, m
 Rust, Tokio, Actix-Web, SQLx, Askama, Stripe, HTMX
 
 
-CRATES
-
 APP DESCRIPTION
 Fully automated
-Monolith Lillpepe Saas app that sells webapps.
-Compile html css js sql into binary
-Fully functional binary with db and payment integration
-Ship binary to tenant domain with db, external default static files
+Framework Monolith MAANG that runs Lillpepe
+Saas app that sells software licenses to tenants
+Binary compiles html css js sql into binary 
+and shipped automatically together with a database
+so that the whole tenant's app is isolated on their domain.
+Ship binary to tenant domain with db, external default static files.
 
 TENANT CAN
 Change 5 colors, background videos or images,
+css file with variables are stored on domain and is self healing. 
 CRUD products services posts audio
 Stores own static files: images, videos, audio
 Edit About and Contact page
