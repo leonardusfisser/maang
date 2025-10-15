@@ -1,0 +1,31 @@
+[workspace]
+resolver = "3"
+members = [
+  "apps/*",
+  "crates/domain",
+  "crates/infra",
+  "crates/infra/*",
+  "crates/application",
+  "crates/web",
+  "crates/core/*",
+]
+exclude = ["wip/*"]
+
+[workspace.package]
+edition = "2024"
+
+[workspace.lints.rust]
+warnings = "deny"
+unused = "deny"
+
+[workspace.lints.clippy]
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+panic = "abort"
+strip = true
+opt-level = 3
