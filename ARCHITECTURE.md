@@ -34,22 +34,22 @@ Stores own static files: images, videos, audio
 Edit About and Contact page
 
 LIBRARIES
-Web Actix, serde, thiserror
+Web Actix, serde, thiserror, tracing
 
 DATABASES
-Postgress (core), MongoDB (docs), SurrealDB (mirror)
+SurrealDB
 
 PAYMENTS
-Stripe,
+Stripe, 
 
-IF I MUST
+ONLY ON LOGGED IN PAGES
 Javascript, Redis, HTMX, Askama
 
 FRONTEND
 html, css
 
-NOT KEEN ON
-Git Git-Hub Git Actions Docker Kubernettes YAML
+I DONT LIKE
+GitHub Git Actions Docker Kubernettes YAML Makefile
 
 ABSOLUTELY NOT
 unwrap, expect panic, chrono.
@@ -76,3 +76,4 @@ Netdata, rsync, ssh
 
 PREFERENCES
 short summarized factual answers, only code when i ask
+rust ide db
