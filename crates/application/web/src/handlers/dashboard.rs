@@ -1,2 +1,5 @@
-#![forbid(un#![forbid(unsafe_code)]
-#![deny(warnings)]safe_code)]
+use actix_web::{HttpResponse, Responder};
+
+pub async fn get() -> impl Responder {
+    HttpResponse::Ok().body("dashboard")
+}

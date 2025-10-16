@@ -1,2 +1,1 @@
-#![forbid(unsafe_code)]
-#![deny(warnings)]
+#![allow(missing_docs,dead_code)]

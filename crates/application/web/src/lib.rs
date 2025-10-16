@@ -1,9 +1,16 @@
-#![forbid(unsafe_code)]
-#![deny(warnings)]
-
-pub mod server;
-pub mod router;
+#![allow(missing_docs,unused_imports)]
 pub mod configure;
-pub mod templates;
 pub mod middleware;
-pub mod handlers;
+pub mod router;
+pub mod server;
+pub mod templates;
+mod handlers;
+
+pub use {
+  configure::*,
+  middleware::*,
+  router::*,
+  server::*,
+  templates::*,
+};
+

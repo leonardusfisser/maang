@@ -2,6 +2,7 @@
 resolver = "3"
 
 members = [
+  "apps/lillpepe",
   "crates/application/api",
   "crates/application/cli",
   "crates/application/web",
@@ -51,6 +52,7 @@ askama = "0.14.0"
 flate2 = "1.1.4"
 serde = { version = "1.0.228", features = ["derive"] }
 serde_json = "1.0.145"
+sqlx = "0.9.0-alpha.1"
 tar = "0.4.44"
 thiserror = "2.0.17"
 time = { version = "0.3.44", features = ["serde"] }

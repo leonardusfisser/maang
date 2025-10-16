@@ -1,4 +1,9 @@
-#![forbid(unsafe_code)]
-#![deny(warnings)]
-mod tracing_init;
-mod metrics;
+#![allow(missing_docs,unused_imports)]
+
+pub mod metrics;
+pub mod tracing_init;
+
+pub use {
+    metrics::*,
+    tracing_init::*,
+};

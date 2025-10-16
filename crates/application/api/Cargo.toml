@@ -14,7 +14,7 @@ tracing.workspace = true
 ulid.workspace = true
 
 domain = { path = "../../domain" }
-cratecore-errors = { package = "core-errors", path = "../../core/errors" }
+core-errors = { path = "../../core/errors" }
 
 [lints]
 workspace = true

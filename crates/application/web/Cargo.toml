@@ -1,5 +1,5 @@
 [package]
-name = "web"
+name = "application-web"
 edition.workspace = true
 license.workspace = true
 rust-version.workspace = true
@@ -13,7 +13,7 @@ thiserror.workspace = true
 tracing.workspace = true
 ulid.workspace = true
 
-application = { path = ".." }
+application = { path = "../../application" }
 core-errors = { path = "../../core/errors" }
 
 [lints]

@@ -6,7 +6,7 @@ rust-version.workspace = true
 version.workspace = true
 
 [dependencies]
-crates-core-domain = { path = "../../domain" }
+domain = { path = "../../domain" }
 core-errors = { path = "../../core/errors" }
 
 actix-web.workspace = true

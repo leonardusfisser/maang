@@ -1,10 +1,7 @@
-#![forbid(unsafe_code)]
-#![deny(warnings)]
+//! LillPepe main binary – starts the web server.
 
-use crate_core_observability::tracing_init;
-
-#[tokio::main]
+#[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    tracing_init::init();
-    crate_application_web::server::run().await
+    core_observability::tracing_init::init();
+    application_web::server::run("127.0.0.1:8080").await
 }

@@ -10,8 +10,8 @@ version.workspace = true
 domain = { path = "../domain" }
 core = { path = "../core" }
 
-core-domain-errors = { path = "../core/errors" }
 core-observability = { path = "../core/observability" }
+core-errors = { path = "../core/errors" }
 
 actix-web.workspace = true
 askama.workspace = true

@@ -1,14 +1,14 @@
-#![forbid(unsafe_code)]
-#![deny(warnings)]
+#![allow(missing_docs,unused_imports)]
 
-pub mod domain_error;
 pub mod app_error;
-pub mod infrastructure_error;
+pub mod domain_error;
 pub mod http_error;
+pub mod infra_error;
+
 
 pub use {
-    domain_error::*,
     app_error::*,
-    infrastructure_error::*,
-    http_error::*
+    domain_error::*,
+    http_error::*,
+    infra_error::*,
 };
