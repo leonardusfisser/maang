@@ -1,11 +1,16 @@
 [package]
 name = "core-utils"
-version.workspace = true
 edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+version.workspace = true
 
 [dependencies]
-time.workspace = true
-uuid.workspace = true
+actix-web.workspace = true
+askama.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+lints.workspace = true
+tracing.workspace = true
+ulid.workspace = true
 
-[lib]
-path = "./src/lib.rs"

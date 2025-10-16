@@ -1,12 +1,14 @@
 [package]
-name = "core-errors"
+name = "infrastructure-db"
 edition.workspace = true
 license.workspace = true
 rust-version.workspace = true
 version.workspace = true
 
-
 [dependencies]
+crates-core-domain = { path = "../../domain" }
+core-errors = { path = "../../core/errors" }
+
 actix-web.workspace = true
 askama.workspace = true
 serde.workspace = true
@@ -14,4 +16,7 @@ thiserror.workspace = true
 lints.workspace = true
 tracing.workspace = true
 ulid.workspace = true
+
+sqlx.workspace = true
+tokio.workspace = true
 

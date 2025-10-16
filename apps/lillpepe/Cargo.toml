@@ -1,7 +1,9 @@
 [package]
 name = "lillpepe"
-version.workspace = true
 edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+version.workspace = true
 
 [dependencies]
 application        = { path = "../../crates/application" }
@@ -10,7 +12,9 @@ core-config        = { path = "../../crates/core/config" }
 core-observability = { path = "../../crates/core/observability" }
 core-errors        = { path = "../../crates/core/errors" }
 
-actix-web = "4.11.0"
+actix-web.workspace = true
+lints.workspace = true
 tokio.workspace = true
 tracing.workspace = true
 tracing-subscriber.workspace = true
+

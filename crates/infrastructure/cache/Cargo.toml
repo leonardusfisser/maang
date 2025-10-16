@@ -1,5 +1,5 @@
 [package]
-name = "core-errors"
+name = "infrastructure-cache"
 edition.workspace = true
 license.workspace = true
 rust-version.workspace = true

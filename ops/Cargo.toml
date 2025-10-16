@@ -1,0 +1,12 @@
+[workspace]
+members = [
+    "archive_maang",
+    "backup_tenant",
+    "delete_tenant",
+    "migrate_tenant",
+    "provision_tenant",
+    "release_switch",
+    "verify_tenants",
+]
+
+[workspace.dependencies]

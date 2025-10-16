@@ -3,9 +3,8 @@
 /dist/
 
 # Runtime data
-/data/**
-/logs/**
-/backups/**
+/var/**/**
+
 /examples/**/*.log
 
 # Environment & secrets
@@ -15,7 +14,7 @@ config/.env*
 !.env.production.example
 
 # Machine-specific or transient
-BUILDINFO
+dist/BUILDINFO.md
 .DS_Store
 *.swp
 *.tmp
