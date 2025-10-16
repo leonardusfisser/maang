@@ -13,10 +13,11 @@ actix-web.workspace = true
 askama.workspace = true
 serde.workspace = true
 thiserror.workspace = true
-lints.workspace = true
 tracing.workspace = true
 ulid.workspace = true
 
 sqlx.workspace = true
 tokio.workspace = true
 
+[lints]
+workspace = true

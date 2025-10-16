@@ -11,5 +11,8 @@ core-errors = { path = "../core/errors" }
 actix-web.workspace = true
 serde.workspace = true
 thiserror.workspace = true
-lints.workspace = true
+
+[lints]
+workspace = true
+
 

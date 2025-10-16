@@ -10,10 +10,11 @@ actix-web.workspace = true
 askama.workspace = true
 serde.workspace = true
 thiserror.workspace = true
-lints.workspace = true
 tracing.workspace = true
 ulid.workspace = true
 
 application = { path = ".." }
 core-errors = { path = "../../core/errors" }
 
+[lints]
+workspace = true

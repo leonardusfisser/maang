@@ -1,6 +1,9 @@
 [workspace]
+resolver = "3"
+
 members = [
     "archive_maang",
+    "archive_files_types",
     "backup_tenant",
     "delete_tenant",
     "migrate_tenant",
@@ -9,4 +12,36 @@ members = [
     "verify_tenants",
 ]
 
+# Standard metadata for all ops binaries
+[workspace.package]
+edition = "2021"          # or "2024" when stable on your toolchain
+rust-version = "1.81"
+license = "MIT OR Apache-2.0"
+version = "0.1.0"
+
+# Shared dependency versions (pin exact = for reproducible builds)
 [workspace.dependencies]
+flate2    = "1.1.4"
+tar       = "0.4.44"
+thiserror = "2.0.17"
+tracing   = "0.1.41"
+tracing-subscriber = { version = "=0.3.18", features = ["env-filter"] }
+walkdir   = "2.5.0"
+
+[profile.release]
+codegen-units = 1
+lto = "thin"
+opt-level = 3
+panic = "abort"
+strip = true
+
+[workspace.lints.rust]
+warnings = "deny"
+unsafe_code = "forbid"
+unused_mut = "deny"
+
+[workspace.lints.clippy]
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
+unused_crate_dependencies = "warn"
