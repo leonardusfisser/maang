@@ -1,5 +1,3 @@
-#![allow(missing_docs)] // remove later
-
 pub mod about;
 pub mod admin;
 pub mod audio;
@@ -9,6 +7,7 @@ pub mod dashboard;
 pub mod login;
 pub mod logout;
 pub mod media;
+pub mod metrics;
 pub mod pdf;
 pub mod photos;
 pub mod posts;
@@ -19,4 +18,6 @@ pub mod signup;
 pub mod tenants;
 pub mod users;
 pub mod videos;
+pub mod version;
+
 
