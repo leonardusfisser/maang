@@ -2,6 +2,7 @@
 name = "application-api"
 edition.workspace = true
 license.workspace = true
+publish = false
 rust-version.workspace = true
 version.workspace = true
 
@@ -13,8 +14,6 @@ thiserror.workspace = true
 tracing.workspace = true
 ulid.workspace = true
 
-domain = { path = "../../domain" }
-core-errors = { path = "../../core/errors" }
 
 [lints]
 workspace = true

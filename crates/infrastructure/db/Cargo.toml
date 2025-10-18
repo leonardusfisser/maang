@@ -2,6 +2,7 @@
 name = "infrastructure-db"
 edition.workspace = true
 license.workspace = true
+publish = false
 rust-version.workspace = true
 version.workspace = true
 
@@ -9,15 +10,32 @@ version.workspace = true
 domain = { path = "../../domain" }
 core-errors = { path = "../../core/errors" }
 
+mongodb   = { workspace = true, optional = true }
+sqlx      = { workspace = true, optional = true }
+surrealdb = { workspace = true, optional = true }
+
 actix-web.workspace = true
 askama.workspace = true
 serde.workspace = true
 thiserror.workspace = true
 tracing.workspace = true
 ulid.workspace = true
-
-sqlx.workspace = true
 tokio.workspace = true
+
+[features]
+default = []
+mongo-backend    = [
+    "mongodb/tokio-runtime",
+    "mongodb/rustls"]
+postgres-backend = [
+    "sqlx/postgres",
+    "sqlx/runtime-tokio-rustls",
+    "sqlx/macros",
+    "sqlx/time",
+    "sqlx/uuid"]
+surreal-backend = ["surrealdb"]
+
 
 [lints]
 workspace = true
+

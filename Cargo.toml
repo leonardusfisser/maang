@@ -62,47 +62,114 @@ exclude = [
 ]
 
 [workspace.package]
-edition = "2024"
-license = "MIT OR Apache-2.0"
-rust-version = "1.89.0"
-version = "0.1.0"
+categories      = ["web-programming::frameworks", "database", "async"]
+description     = "MAANG: secure, multi-tenant Rust framework for white-label SaaS."
+# documentation = "https://docs.rs/maangframe"
+edition         = "2024"
+homepage        = "https://maangframe.com"
+keywords        = ["rust", "framework", "saas", "multi-tenant", "surrealdb"]
+license         = "Proprietary"
+publish         = false
+readme          = "README.md"
+repository      = "https://github.com/leonardusfisser/maangframe"
+rust-version    = "1.89.0"
+version         = "0.1.0"
+
+
+# [package.metadata.docs.rs]
+# all-features = true
+# no-default-features = false
+# rustdoc-args = ["--cfg", "docsrs"]
+# targets = ["x86_64-unknown-linux-gnu"]
 
 
 [workspace.dependencies]
-actix-web = "4.11.0"
-askama = "0.14.0"
-dirs = "6.0.0"
-flate2 = "1.1.4"
-serde = { version = "1.0.228", features = ["derive"] }
-serde_json = "1.0.145"
-sqlx = "0.9.0-alpha.1"
-tar = "0.4.44"
-thiserror = "2.0.17"
-time = { version = "0.3.44", features = ["formatting","macros"] }
-tokio = { version = "1.48.0", features = ["macros", "rt-multi-thread"] }
-tracing = "0.1.41"
-tracing-subscriber = { version = "0.3.20", features = ["fmt", "env-filter"] }
-ulid = "1.2.1"
-uuid = { version = "1.18.1", features = ["v4"] }
-walkdir = "2.5.0"
-wasm-bindgen = "0.2.104"
+actix-web                       = "4.11.0"
+askama                          = "0.14.0"
+bb8                             = "0.9.0"
+bb8-postgres                    = "0.9.0"
+deadpool-postgres               = "0.14.1"
+dirs                            = "6.0.0"
+flate2                          = "1.1.4"
+mongodb             = { version = "3.3.0", default-features = false }
+serde = { version               = "1.0.228", features = ["derive"] }
+serde_json                      = "1.0.145"
+surreal                         = "0.4.1"
+sqlx = { version                = "0.8.6", default-features = false }
+tar                             = "0.4.44"
+thiserror                       = "2.0.17"
+time                = { version = "0.3.44", features = ["formatting","macros"] }
+tokio               = { version = "1.48.0", features = ["macros", "rt-multi-thread"] }
+tokio-postgres                  = "0.7.15"
+tracing                         = "0.1.41"
+tracing-subscriber  = { version = "0.3.20", features = ["fmt", "env-filter"] }
+ulid                            = "1.2.1"
+uuid                = { version = "1.18.1", features = ["v4"] }
+walkdir                         = "2.5.0"
+wasm-bindgen                    = "0.2.104"
 
-[workspace.lints.rust]
-# missing_docs = "warn"
-unsafe_code = "forbid"
-unused_crate_dependencies = "allow"
-unused_mut = "deny"
-warnings = "deny"
 
-[workspace.lints.clippy]
-expect_used = "deny"
-panic = "deny"
-panic_in_result_fn = "deny"
-unwrap_used = "deny"
+[workspace.lints.rust] # allow | warn | deny |forbid
+dead_code                     = "forbid" # catch unused fns/modules
+missing_debug_implementations = "forbid"
+missing_docs                  = "allow"
+non_snake_case                = "forbid"        # enforce Rust naming
+non_camel_case_types          = "forbid"
+trivial_casts                 = "forbid"
+trivial_numeric_casts         = "forbid"
+unreachable_code              = "forbid"
+unsafe_code                   = "forbid"
+# unused_crate_dependencies     = "forbid" # depricated
+unused_imports                = "forbid"
+unused_mut                    = "forbid"
+unused_variables              = "forbid"      # catch dead locals
+warnings                      = "forbid"
+
+
+[workspace.lints.clippy] # allow | warn | deny |forbid
+all                   = "forbid"
+clone_on_copy         = "forbid"
+complexity            = "forbid"
+dbg_macro             = "forbid"
+expect_used           = "forbid"
+map_unwrap_or         = "forbid"
+nursery               = "forbid"
+panic_in_result_fn    = "forbid"
+pedantic              = "warn"
+panic                 = "forbid"
+perf                  = "forbid"
+redundant_clone       = "forbid"
+redundant_field_names = "forbid"
+needless_return       = "forbid"
+style                 = "forbid"
+todo                  = "forbid"
+unwrap_used           = "forbid"
+wildcard_imports      = "forbid"
+
+
+# [profile.dev.package."actix-web"] # heavy deps (compile faster, your crates stay default):
+# opt-level = 0
+
 
 [profile.release]
-codegen-units = 1
-lto = "thin"
-opt-level = 3
-panic = "abort"
-strip = true
+codegen-units         = 1 # integer	Parallel codegen units	1 = best perf, higher = faster compile
+debug                 = 2 # integer or bool	Include debug info	0 none, 1 line info, 2 full info
+# debug-assertions    = "" # bool	Enable debug_assert! macros	usually false for release
+# debug-info          = "" # (alias) old name for debug	—
+incremental           = false # bool	Enable incremental compilation	usually false for release
+lto                   = "thin" # bool or string	Link Time Optimization	false, true, "thin", "fat"
+# lto-fat             = "" # (deprecated)	—	use lto = "fat" instead	—
+opt-level	          = 3 # integer or string	Optimization level	0–3, "s", "z" — 3 = max perf, "z" = smallest binary
+# optimize            = "" # (alias)	—	old name for opt-level
+overflow-checks       = true # bool	Integer overflow checks	true safe, false for speed
+panic                 = "abort" # 	string	Panic strategy	"unwind" or "abort"
+# rpath	              = "" # bool	Add runtime library search path	rarely used; false by default
+split-debuginfo	      = "packed" # string	Control how debug info is stored	"packed", "unpacked", "off"
+strip	              = true # bool or string	Strip symbols from binaries	true, "symbols", "debuginfo"
+
+
+# [patch.crates-io] # Git fork (pin to commit):
+# some-crate = { git = "https://github.com/you/some-crate.git", rev = "abc123..." }
+
+
+

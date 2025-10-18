@@ -215,3 +215,30 @@ Private closed-source framework.
 
 Rust. Secure. Fast. Minimal. Tenant-isolated.
 
+
+
+
+# 🦀 MAANGFRAME
+
+**MAANGFRAME** is a secure, multi-tenant Rust framework for building white-label SaaS apps.  
+It powers projects like **LillPepe**, **Radar**, and **BigPepe**.
+
+[![Crates.io](https://img.shields.io/crates/v/maangframe.svg)](https://crates.io/crates/maangframe)
+[![Docs.rs](https://docs.rs/maangframe/badge.svg)](https://docs.rs/maangframe)
+[![Build](https://github.com/leonardusfisser/maangframe/actions/workflows/ci.yml/badge.svg)](https://github.com/leonardusfisser/maangframe/actions/workflows/ci.yml)
+
+---
+
+### ✨ Highlights
+- **4-layer architecture**: Web → Application → Domain → Infrastructure  
+- **Multi-tenant isolation** (`white_label_id` enforced per repository)  
+- **Typed errors**, **observability** (`tracing` spans), **no panics**  
+- **Database-agnostic**: SurrealDB, PostgreSQL, MongoDB
+
+---
+
+### 🚀 Docs & Source
+# - 📦 [Crates.io](https://crates.io/crates/maangframe)  
+# - 📘 [Docs.rs](https://docs.rs/maangframe)  
+# - 🏠 [Website](https://maangframe.com)  
+# - 💾 [GitHub](https://github.com/leonardusfisser/maangframe)
