@@ -1,36 +1,91 @@
+# ======================================
+# 🦀 MAANG FRAMEWORK GITIGNORE
+# ======================================
+
 # Build artifacts
 /target/
 /dist/
+/wasm/target/
+/ops/**/target/
+/tools/**/target/
+/apps/**/target/
+/crates/**/target/
+*.d
 
 # Runtime data
-/var/**/**
+/var/archives/
+/var/tmp/
+/var/logs/
+/var/db/
+/var/system/
+/var/tenants/
+/var/users/
+/var/backups/
+**/DevBackups/
+**/maang_backups/
 
-/examples/**/*.log
+# Temporary & generated files
+*.log
+*.pid
+*.sock
+*.gz
+*.tar
+*.tar.gz
+*.zip
+*.tmp
+*.bak
+*.old
+*.rs.bk
+*.archive
 
 # Environment & secrets
-*.env
-config/.env*
-!.env.sample
+.env
+.env.*
+!.env.example
 !.env.production.example
 
 # Machine-specific or transient
-dist/BUILDINFO.md
+.cargo-ok
 .DS_Store
-*.swp
-*.tmp
+Thumbs.db
+Desktop.ini
+dist/BUILDINFO.md
 
 # IDEs & editors
 .idea/
 .vscode/
 helix/
-.editor/
+editor/
 .editorconfig
+*.code-workspace
+*.swp
 
-# OS / tooling
-Thumbs.db
-*.bak
-*.old
-
-# Rust package manager & tooling
+# Rust tooling
 Cargo.lock
 !apps/**/Cargo.lock
+
+# Test & coverage
+coverage/
+logs/
+test-results/
+target-*
+
+# ======================================
+# Explicitly Keep
+# ======================================
+!.env.example
+!VERSION
+!LICENSE
+!justfile
+!deny.toml
+!rust-toolchain.toml
+!docs/**
+!deploy/**
+!config/**
+!legal/**
+!marketing/**
+!migrations/**
+!scripts/**
+!tests/**
+!ops/**/*.service
+!ops/**/*.timer

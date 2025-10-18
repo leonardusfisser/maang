@@ -1,5 +1,5 @@
 [package]
-name = "archive_maang"
+name = "archive-maang"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true

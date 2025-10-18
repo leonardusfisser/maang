@@ -17,7 +17,5 @@ pub mod settings;
 pub mod signup;
 pub mod tenants;
 pub mod users;
-pub mod videos;
 pub mod version;
-
-
+pub mod videos;

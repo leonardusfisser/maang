@@ -1,5 +1,5 @@
-use actix_web::{web, HttpResponse, Responder};
 use crate::handlers::{self, metrics, version};
+use actix_web::{HttpResponse, Responder, web};
 
 /// Register all public + admin routes for LillPepe.
 pub fn configure(cfg: &mut web::ServiceConfig) {
@@ -38,12 +38,9 @@ pub fn configure(cfg: &mut web::ServiceConfig) {
     // Version & Metrics
     cfg.service(web::resource("/version").route(web::get().to(handlers::version::get)));
     cfg.service(web::resource("/metrics").route(web::get().to(handlers::metrics::get)));
-
 }
 
 /// Lightweight built-in health handler (safe even if handlers::health isn’t ready)
 async fn health() -> impl Responder {
     HttpResponse::Ok().body("ok")
 }
-
-

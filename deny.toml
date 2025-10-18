@@ -1,2 +1,2 @@
 [bans]
-deny = ["anyhow", "eyre"]
+deny = ["anyhow", "chrono","eyre"]

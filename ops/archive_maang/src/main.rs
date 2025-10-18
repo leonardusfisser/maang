@@ -1,6 +1,37 @@
-use std::{env, fs::File, io, path::{Path, PathBuf}};
+//! # archive_maang
+//!
+//! `archive_maang` is an operational binary in the MAANG framework.
+//! It walks the entire `~/maang` project directory, excluding build artefacts,
+//! and creates a compressed `archive_maang.tar.gz` inside `maang/var/archives`.
+//!
+//! ## Features
+//! - Finds the MAANG project root automatically from the current or executable directory.
+//! - Excludes all `target/` directories and previously created archives.
+//! - Streams files directly into a `.tar.gz` using `flate2` and `tar` crates.
+//! - Logs progress and skipped files with `tracing`.
+//!
+//! ## Example usage
+//! ```bash
+//! cargo run -p archive_maang --release
+//! ```
+//! Produces a compressed archive at:
+//! ```text
+//! ~/maang/var/archives/archive_maang.tar.gz
+//! ```
+//!
+//! ## Safety
+//! - No panics (`Result`-based error propagation).
+//! - Uses typed errors (`AppError`).
+//! - Ignores unreadable files safely, logging warnings instead of failing the run.
 
-use flate2::{write::GzEncoder, Compression};
+use std::{
+    env,
+    fs::File,
+    io,
+    path::{Path, PathBuf},
+};
+
+use flate2::{Compression, write::GzEncoder};
 use tar::Builder;
 use thiserror::Error;
 use tracing::{info, warn};
@@ -18,9 +49,7 @@ enum AppError {
 
 fn init_tracing() {
     let _ = tracing_subscriber::fmt()
-        .with_env_filter(
-            std::env::var("RUST_LOG").unwrap_or_else(|_| "info".to_string())
-        )
+        .with_env_filter(std::env::var("RUST_LOG").unwrap_or_else(|_| "info".to_string()))
         .try_init();
 }
 
@@ -60,9 +89,10 @@ fn archive_maang() -> Result<(), AppError> {
     let start = exe
         .as_ref()
         .and_then(|p| p.parent())
-        .unwrap_or_else(|| cwd.as_path());
+        .unwrap_or(cwd.as_path());
 
-    let maang_root = find_maang_root(start).or_else(|| find_maang_root(&cwd))
+    let maang_root = find_maang_root(start)
+        .or_else(|| find_maang_root(&cwd))
         .unwrap_or(cwd.clone());
 
     let archives_dir = maang_root.join("var").join("archives");
@@ -98,8 +128,11 @@ fn archive_maang() -> Result<(), AppError> {
             continue;
         }
 
-        let rel = path.strip_prefix(&maang_root)
-            .map_err(|_| AppError::StripPrefix { path: path.to_path_buf() })?;
+        let rel = path
+            .strip_prefix(&maang_root)
+            .map_err(|_| AppError::StripPrefix {
+                path: path.to_path_buf(),
+            })?;
 
         if rel.as_os_str().is_empty() {
             continue;

@@ -1,20 +1,28 @@
-1.CODE STYLE
-no logic in lib.rs and mod.rs
+Observability
 
-2.ASYNCHRONOUS
-tokio
+Every request span includes:
 
-3.DEPENDENCIES
-serde, time
-minimal dependencies for low maintenance
+request_id
+tenant_id
+user_id (if authenticated)
 
-NO CHRONO
-NO ANYHOW
-NO QWERY
+## Naming
+- Crates: snake_case (e.g., `core_config`)
+- Modules: singular nouns
+- Structs: PascalCase
+- Functions: snake_case
+- Errors: `XxxError`
 
-4.OBSERVABILTIY
-logging,tracing
-user_id, tenant_id
+## Paths
+- Always use `PathBuf`, never hardcoded `/` strings.
+- Relative paths only, resolved at runtime.
 
-5.DATABASE
-surreal
+## Logging
+Use `info!`, `warn!`, `error!`, never `println!`.
+
+## Commits
+Prefix with context:
+
+core: add config validator
+domain: fix tenant repo error mapping
+infra: refactor surrealdb connection pool

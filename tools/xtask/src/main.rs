@@ -1,5 +1,5 @@
-use std::process::Command;
 use clap::{Parser, Subcommand};
+use std::process::Command;
 use thiserror::Error;
 use tracing::info;
 

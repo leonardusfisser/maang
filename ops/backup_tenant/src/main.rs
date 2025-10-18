@@ -1,5 +1,10 @@
-// ops/backup_tenant/src/main.rs
-use std::{fs, path::Path, process::Command, time::{SystemTime, UNIX_EPOCH}};
+// ops/backup_tenant/src/lib
+use std::{
+    fs,
+    path::Path,
+    process::Command,
+    time::{SystemTime, UNIX_EPOCH},
+};
 
 use thiserror::Error;
 
@@ -14,7 +19,10 @@ enum OpsError {
     #[error("time error")]
     Time,
     #[error("command failed: {cmd} (code: {code:?})")]
-    CommandFailed { cmd: &'static str, code: Option<i32> },
+    CommandFailed {
+        cmd: &'static str,
+        code: Option<i32>,
+    },
 }
 
 fn epoch_secs() -> Result<u64> {
@@ -25,7 +33,9 @@ fn epoch_secs() -> Result<u64> {
 }
 
 fn main() -> Result<()> {
-    let tenant = std::env::args().nth(1).ok_or(OpsError::MissingArg("tenant domain"))?;
+    let tenant = std::env::args()
+        .nth(1)
+        .ok_or(OpsError::MissingArg("tenant domain"))?;
     let ns = tenant.replace('.', "_");
     let ts = epoch_secs()?.to_string();
 
@@ -49,7 +59,10 @@ fn main() -> Result<()> {
         .args(["export", &dump_path, "--ns", &ns, "--db", "site"])
         .status()?;
     if !status.success() {
-        return Err(OpsError::CommandFailed { cmd: "surreal export", code: status.code() });
+        return Err(OpsError::CommandFailed {
+            cmd: "surreal export",
+            code: status.code(),
+        });
     }
 
     // 2) Archive tenant folder + dump (zstd-compressed)
@@ -58,7 +71,10 @@ fn main() -> Result<()> {
         .args(["-I", "zstd", "-cf", &archive_path, &tenant_root, &dump_path])
         .status()?;
     if !status.success() {
-        return Err(OpsError::CommandFailed { cmd: "tar", code: status.code() });
+        return Err(OpsError::CommandFailed {
+            cmd: "tar",
+            code: status.code(),
+        });
     }
 
     // 3) Clean temp dump

@@ -1,71 +1,17 @@
-apps
-└── lillpepe
-    ├── Cargo.toml
-    └── src
-crates
-├── application
-│   ├── Cargo.toml
-│   └── src
-├── core
-│   ├── config
-│   ├── errors
-│   ├── observability
-│   └── utils
-├── domain
-│   ├── Cargo.toml
-│   └── src
-├── infra
-│   ├── cache
-│   ├── Cargo.toml
-│   ├── email
-│   ├── metrics
-│   ├── postgres
-│   ├── src
-│   ├── storage
-│   └── stripe
-└── web
-    ├── Cargo.toml
-    └── src
-static
-├── admin
-├── browserconfig.xml
-├── css
-│   ├── critical.css
-│   └── main.css
-├── errors
-├── fonts
-├── google123abc.html
-├── html
-│   ├── 404.html
-│   ├── 500.html
-│   ├── maintenance.html
-│   └── offline.html
-├── humans.txt
-├── js
-│   ├── htmx.min.js
-│   └── main.js
-├── manifest.webmanifest
-├── robots.txt
-├── sitemap.xml
-└── sw.js
-assets
-├── audio
-├── icons
-├── images
-├── pdf
-└── videos
-data
-├── backups
-├── temp
-└── tenants
-deploy
-├── nginx
-│   └── lillpepe.conf
-└── systemd
-    └── lillpepe.service
-tools
-└── xtask
-    ├── Cargo.toml
-    └── src
+maang/
+├── apps/ # Binary crates (lillpepe, etc.)
+├── crates/ # Core, Domain, Infra, Application layers
+├── ops/ # Operational binaries (backup_tenant, archive_maang, etc.)
+├── docs/ # Documentation (this folder)
+├── assets/ # Static images, audio, pdf, etc.
+├── deploy/ # Systemd, nginx
+├── dist/ # Release builds for tenants
+├── var/ # Runtime data (backups, logs, tmp)
+├── wasm/ # WebAssembly crates
 
-46 directories, 23 files
+
+## Folder Rules
+- `src/` inside each crate contains code only (no logic in `lib.rs`)
+- No nested modules beyond `src/`
+- Public APIs exposed via crate-level `lib.rs` re-exports
+- All paths relative and portable (`PathBuf` only, no `String` paths)
