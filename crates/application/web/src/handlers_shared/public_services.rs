@@ -1,5 +1,5 @@
 use actix_web::{HttpResponse, Responder};
 
 pub async fn list() -> impl Responder {
-    HttpResponse::Ok().body("services list")
+    HttpResponse::Ok().body("services")
 }

@@ -1,9 +1,15 @@
-#![allow(missing_docs, unused_imports)]
-pub mod configure;
-mod handlers;
+pub mod handlers_labeled;
+pub mod handlers_shared;
+pub mod handlers_webmaster;
 pub mod middleware;
 pub mod router;
 pub mod server;
-pub mod templates;
 
-pub use {configure::*, middleware::*, router::*, server::*, templates::*};
+pub use {
+    handlers_labeled::*,
+    handlers_shared::*,
+    handlers_webmaster::*,
+    middleware::*,
+    router::*,
+    server::*,
+};

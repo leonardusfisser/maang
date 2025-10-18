@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="robots" content="noindex,nofollow,noarchive,noimageindex,nosnippet">
+    <meta name="googlebot" content="noindex,nofollow,noarchive">
+
+    <title>{{ title }}</title>
+
+    <link rel="preload" href="{{ base.css_critical }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ base.css_critical }}"></noscript>
+
+    <link rel="preload" href="{{ base.css_style }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ base.css_style }}"></noscript>
+    <link rel="manifest" href="/manifest.webmanifest">
+</head>
+<body>
+
+<header class="navbar glass">
+    <nav class="nav-container">
+        <ul class="nav-links">
+
+            //  PUBLIC {{ shared_public_nav }}
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/media">Videos</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+
+            //  ADMIN {{ shared_admin_nav }}
+            <li><a href="/dashboard">Register</a></li>
+            <li><a href="/config">Register</a></li>
+            <li><a href="/metrics">Register</a></li>
+            <li><a href="/settings">Register</a></li>
+            <li><a href="/users">Register</a></li>
+            <li><a href="/version">Register</a></li>
+        </ul>
+    </nav>
+</header>
+{% block content %}{% endblock %}
+<script src="../static/js/register-sw.js"></script>
+</body>
+</html>
+

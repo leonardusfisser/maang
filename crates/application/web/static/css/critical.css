@@ -1,0 +1,128 @@
+:root {
+    --accent:               pink;
+    --color-background:     black;
+    --color-border:         white;
+    --color-heading:        pink;
+    --color-main:           white;
+    --opacity:              0.8;
+    --radius:               10px;
+}
+
+/* hide scrollbars globally */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+html, body {
+    background: transparent;
+    color: var(--color-main);
+    font-family: system-ui, sans-serif;
+    height: 100%;
+    margin: 0;
+    overflow-x: auto;
+    padding: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 100%;
+}
+
+/* ✅ full-screen video background */
+#div-background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+#div-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4); /* dim video for contrast */
+}
+
+#video-background {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ✅ header + footer unchanged */
+header {
+    align-items: center;
+    background: var(--color-background);
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    height: 36px;
+    justify-content: center;
+    opacity: var(--opacity);
+    position: fixed;
+    z-index: 1;
+}
+
+nav ul {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+main.container {
+    bottom: 36px;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 20px;
+}
+
+fieldset.main {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    color: var(--color-main);
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    opacity: var(--opacity);
+    overflow: auto;
+    padding: 5px 25px 5px 25px;
+    position: relative;
+    scrollbar-width: none;
+    text-align: center;
+    top:20px;
+    width: auto;
+}
+
+fieldset.main::-webkit-scrollbar {
+    display: none;
+}
+
+footer {
+    align-items: center;
+    background: var(--color-background);
+    bottom: 0;
+    color: var(--color-main);
+    display: flex;
+    height: 36px;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    opacity: var(--opacity);
+    position: fixed;
+    z-index: 1;
+}
