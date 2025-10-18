@@ -2,8 +2,9 @@ use actix_web::{HttpResponse, Responder, web};
 use crate::handlers_shared::{
     self,
     base,
-    public_home,
     public_about,
+    public_contact,
+    public_media,
     public_products,
     public_services,
     public_login,
@@ -11,16 +12,17 @@ use crate::handlers_shared::{
     admin_config,
     admin_dashboard,
     admin_users,
+    admin_logout,
     admin_settings,
     admin_metrics,
     admin_version,
 };
 
 /// Register all public + admin routes for LillPepe.
-pub fn routing(cfg: &mut web::ServiceConfig) {
+pub fn routing_shared(cfg: &mut web::ServiceConfig) {
 
     // PUBLIC
-    cfg.service(web::resource("/").route(web::get().to(handlers_shared::base::public_home::get)));
+    cfg.service(web::resource("/").route(web::get().to(base::home)));
     cfg.service(web::resource("/about").route(web::get().to(handlers_shared::public_about::get)));
     cfg.service(web::resource("/products").route(web::get().to(handlers_shared::public_products::list)));
     cfg.service(web::resource("/services").route(web::get().to(handlers_shared::public_services::list)));

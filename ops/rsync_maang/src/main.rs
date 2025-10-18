@@ -1,6 +1,6 @@
 /// # 🧾 MAANG Backup Utility
 ///
-/// This binary performs a **timestamped rsync backup** of the local `~/maang` directory.
+/// This binary performs a **timestamped rsync backup** of the local `~/maangframe` directory.
 /// Designed for production use — safe, observable, and minimal.
 ///
 /// ## ✅ Features
@@ -12,7 +12,7 @@
 ///
 /// ## 🧩 Directory Layout
 /// ```text
-/// ~/maang/DevBackups/maang_backups/maang_YYYY-MM-DD_HH-MM/
+/// ~/maangframe/DevBackups/maang_backups/maang_YYYY-MM-DD_HH-MM/
 /// ```
 ///
 /// ## ⚙️ Dependencies
@@ -33,8 +33,8 @@
 ///
 /// ## 📜 Example Output
 /// ```text
-/// 🔄 Source: /home/leon/maang
-/// 📦 Destination: /home/leon/maang/DevBackups/maang_backups/maang_2025-10-17_19-03
+/// 🔄 Source: /home/leon/maangframe
+/// 📦 Destination: /home/leon/maangframe/DevBackups/maang_backups/maang_2025-10-17_19-03
 /// sending incremental file list
 /// ...
 /// ✅ Backup complete at 2025-10-17_19-03
@@ -89,9 +89,9 @@ fn main() -> Result<(), BackupError> {
 
     // Paths
     let home = dirs::home_dir().ok_or(BackupError::HomeDir)?;
-    let source = home.join("maang");
+    let source = home.join("maangframe");
     let dest = home
-        .join("maang")
+        .join("maangframe")
         .join("DevBackups")
         .join("maang_backups")
         .join(format!("maang_{timestamp}"));

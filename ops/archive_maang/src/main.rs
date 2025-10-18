@@ -1,8 +1,8 @@
 //! # archive_maang
 //!
 //! `archive_maang` is an operational binary in the MAANG framework.
-//! It walks the entire `~/maang` project directory, excluding build artefacts,
-//! and creates a compressed `archive_maang.tar.gz` inside `maang/var/archives`.
+//! It walks the entire `~/maangframe` project directory, excluding build artefacts,
+//! and creates a compressed `archive_maang.tar.gz` inside `maangframe/var/archives`.
 //!
 //! ## Features
 //! - Finds the MAANG project root automatically from the current or executable directory.
@@ -16,7 +16,7 @@
 //! ```
 //! Produces a compressed archive at:
 //! ```text
-//! ~/maang/var/archives/archive_maang.tar.gz
+//! ~/maangframe/var/archives/archive_maang.tar.gz
 //! ```
 //!
 //! ## Safety
@@ -55,7 +55,7 @@ fn init_tracing() {
 
 fn find_maang_root(start: &Path) -> Option<PathBuf> {
     for anc in start.ancestors() {
-        if anc.file_name().and_then(|s| s.to_str()) == Some("maang") {
+        if anc.file_name().and_then(|s| s.to_str()) == Some("maangframe") {
             return Some(anc.to_path_buf());
         }
     }

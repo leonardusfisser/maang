@@ -2,12 +2,12 @@
 //!
 //! `tar_maang` is an operational utility binary in the MAANG framework.
 //!
-//! It performs a full backup of the `~/maang` project tree into
+//! It performs a full backup of the `~/maangframe` project tree into
 //! `~/DevBackups/maang_backups/maang_{timestamp}`.
 //!
 //! The process includes:
 //! 1. Creating a timestamped backup directory.
-//! 2. Copying all files and folders from `~/maang` using `cp -a --reflink=auto`.
+//! 2. Copying all files and folders from `~/maangframe` using `cp -a --reflink=auto`.
 //! 3. Removing transient build artefacts (`target/` directories and `.d` files).
 //! 4. Compressing the cleaned backup into a `.tar.gz` archive in the same location.
 //!
@@ -59,7 +59,7 @@ fn main() -> Result<(), TarError> {
     let home = dirs::home_dir().ok_or(TarError::HomeDir)?;
     let dest_root = home.join("DevBackups/maang_backups");
     let dest = dest_root.join(format!("maang_{ts}"));
-    let src = home.join("maang");
+    let src = home.join("maangframe");
     fs::create_dir_all(&dest_root)?;
 
     info!("📦 Source: {}", src.display());

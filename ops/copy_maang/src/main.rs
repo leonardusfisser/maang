@@ -40,7 +40,7 @@ fn main() -> Result<(), CopyError> {
     // paths
     let home = dirs::home_dir().ok_or(CopyError::HomeDir)?;
     let dest = home.join("DevBackups/maang_backups").join(format!("maang_{ts}"));
-    let maang = home.join("maang");
+    let maang = home.join("maangframe");
 
     info!("📦 Source: {}", maang.display());
     info!("📁 Destination: {}", dest.display());
@@ -65,12 +65,15 @@ fn main() -> Result<(), CopyError> {
     let cleanup = Command::new("find")
         .arg(dest.to_str().unwrap())
         .args([
+            "(",
             "-type", "d", "-name", "target",
             "-prune", "-exec", "rm", "-rf", "{}", "+",
-            ";",
+            ")",
             "-o",
+            "(",
             "-type", "f", "-name", "*.d",
             "-delete",
+            ")",
         ])
         .status();
 

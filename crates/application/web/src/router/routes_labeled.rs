@@ -3,10 +3,11 @@ use crate::handlers_labeled::{
     admin_labeled,
     public_labeled,
 };
-use actix_web::{HttpResponse, Responder, web};
+use actix_web::{web};
 
-pub fn routing(cfg: &mut web::ServiceConfig) {
+pub fn routing_labeled(cfg: &mut web::ServiceConfig) {
     cfg.service(web::resource("/admin/labeled").route(web::get().to(handlers_labeled::admin_labeled::get)));
     cfg.service(web::resource("/labeled").route(web::get().to(handlers_labeled::public_labeled::get)));
 }
+
 

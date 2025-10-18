@@ -1,0 +1,83 @@
+button,
+input[type="button"],
+input[type="submit"] {
+    all: unset;
+    box-sizing: border-box;
+}
+
+/* Base button look */
+.btn {
+    background: transparent;
+    border: 1px solid grey;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font: inherit;
+    line-height: 44px;
+    padding: 0 16px;
+    text-align: center;
+    transition: background 0.2s, border-color 0.2s;
+    width: 160px; height: 44px;
+}
+
+/* Default (black with grey border) */
+.btn-default {
+    border-color: #555;
+}
+.btn-default:hover {
+    background: #555;
+}
+
+/* Success (green) */
+.btn-success {
+    border-color: green;
+}
+.btn-success:hover {
+    background: green;
+}
+
+/* Danger (red) */
+.btn-danger {
+    border-color: red;
+}
+.btn-danger:hover {
+    background: red;
+}
+
+/* Warning (orange) */
+.btn-warning {
+    border-color: orangered;
+}
+.btn-warning:hover {
+    background: orangered;
+}
+
+/* Info / Notification (blue) */
+.btn-info {
+    border-color: blue;
+}
+.btn-info:hover {
+    background: blue;
+}
+
+
+.btn-small {
+    border-radius: 8px;
+    font-size: 1.1rem;
+    height: 46px;
+    line-height: 32px;
+    padding: 0 14px;
+}
+
+
+.btn-large {
+    border-radius: 12px;
+    font-size: 1.1rem;
+    height: 46px;
+    line-height: 46px;
+    max-width: 320px;
+    padding: 0;
+    width:100%;
+}

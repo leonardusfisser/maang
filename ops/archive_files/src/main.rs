@@ -42,7 +42,7 @@ fn init_tracing() {
 
 fn find_maang_root(start: &Path) -> Option<PathBuf> {
     for anc in start.ancestors() {
-        if anc.file_name().and_then(|s| s.to_str()) == Some("maang") {
+        if anc.file_name().and_then(|s| s.to_str()) == Some("maangframe") {
             return Some(anc.to_path_buf());
         }
     }

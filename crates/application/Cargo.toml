@@ -7,18 +7,6 @@ version.workspace = true
 
 
 [dependencies]
-domain = { path = "../domain" }
-core = { path = "../core" }
-
-core-observability = { path = "../core/observability" }
-core-errors = { path = "../core/errors" }
-
-actix-web.workspace = true
-askama.workspace = true
-serde.workspace = true
-thiserror.workspace = true
-tracing.workspace = true
-ulid.workspace = true
 
 [lints]
 workspace = true
