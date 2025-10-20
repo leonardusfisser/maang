@@ -1,4 +1,64 @@
+# ===================================================================
+# rust-toolchain.toml — pinned toolchain configuration for maangframe
+# See: https://rust-lang.github.io/rustup/overrides.html
+# ===================================================================
+
 [toolchain]
-channel = "stable"
-components = ["rustfmt", "clippy"]
-profile = "minimal"
+
+# -----------------------------------------------
+# Toolchain channel or explicit version
+# -----------------------------------------------
+channel = "stable"       # "stable" | "beta" | "nightly" | "1.81.0" | "nightly-2024-10-18"
+#   "stable"   = auto-updates to latest stable each rustup update
+#   "beta"     = pre-release channel (2-6 weeks ahead)
+#   "nightly"  = daily builds (unstable features)
+#   exact ver. = pinned reproducible compiler (e.g., "1.81.0")
+
+# -----------------------------------------------
+# Profile
+# -----------------------------------------------
+profile = "minimal"      # "minimal" | "default" | "complete"
+#   minimal = rustc + cargo + std only  (CI/servers)
+#   default = adds rust-std-src + docs  (developers)
+#   complete = full install (everything)
+
+# -----------------------------------------------
+# Components to auto-install
+# -----------------------------------------------
+components = [
+    "rustfmt",           # Formatter (cargo fmt)
+    "clippy",            # Linter (cargo clippy)
+    # "rust-src",        # Needed for IDEs or rust-analyzer offline mode
+    # "rust-analysis",   # Used by RLS
+    # "rust-docs",       # Local HTML docs
+    # "miri",            # Interpreter for unsafe analysis
+    # "rust-analyzer",   # LSP server, optional
+]
+
+# -----------------------------------------------
+# Additional compilation targets (optional)
+# -----------------------------------------------
+# targets = [
+#     "x86_64-unknown-linux-musl",   # Static Linux builds
+#     "aarch64-unknown-linux-gnu",   # ARM servers
+#     "wasm32-wasi",                 # Server-side WASM
+#     "wasm32-unknown-unknown",      # Browser WASM
+# ]
+
+# -----------------------------------------------
+# Notes / examples (not actual keys)
+# -----------------------------------------------
+# channel-date       - pin to a nightly date (e.g., nightly-2025-10-18)
+# path               - use a local toolchain folder (e.g., "/opt/rust-1.80.0")
+# include            - add local toolchain overlays (rare)
+# force              - override rustup default selection
+# profile overrides  - install profile variants (nightly can differ)
+
+# -----------------------------------------------
+# Example pinned CI build (reproducible)
+# -----------------------------------------------
+# [toolchain]
+# channel    = "1.81.0"
+# profile    = "minimal"
+# components = ["rustfmt","clippy"]
+# targets    = ["x86_64-unknown-linux-musl"]

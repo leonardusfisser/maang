@@ -9,7 +9,13 @@ version.workspace = true
 build = "build.rs"
 
 [dependencies]
+core-config.workspace = true
+
+actix-files.workspace = true
 actix-web.workspace = true
+askama.workspace = true
+rand.workspace = true
+redis.workspace = true
 serde.workspace = true
 time.workspace = true
 tracing.workspace = true

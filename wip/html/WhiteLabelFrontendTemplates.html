@@ -1,0 +1,343 @@
+<!-- templates/tenant/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ domain }}{% endblock %}</title>
+
+    <!-- Load custom CSS with tenant colors -->
+    <link rel="stylesheet" href="/static/custom.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--primary-color, #3b82f6);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: calc(100vh - 200px);
+        }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color, #f59e0b);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-color, #111827);
+        }
+
+        .card p {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color, #3b82f6);
+        }
+    </style>
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo">{{ domain }}</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/posts">Blog</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <p>&copy; 2025 {{ domain }}. All rights reserved.</p>
+    <p>Powered by Lillpepe</p>
+</footer>
+</body>
+</html>
+
+<!-- ============================================================ -->
+<!-- templates/tenant/home.html -->
+<!-- ============================================================ -->
+
+{% extends "tenant/base.html" %}
+
+{% block title %}Home - {{ domain }}{% endblock %}
+
+{% block content %}
+<section style="text-align: center; padding: 4rem 0;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem; color: var(--primary-color);">
+        Welcome to {{ domain }}
+    </h1>
+    <p style="font-size: 1.25rem; color: #6b7280; margin-bottom: 2rem;">
+        Discover our amazing products and services
+    </p>
+    <a href="/products" class="btn">Browse Products</a>
+</section>
+
+<section>
+    <h2 style="text-align: center; margin: 3rem 0 2rem;">Featured Products</h2>
+    <div class="grid">
+        {% for product in featured_products %}
+        <div class="card">
+            {% if product.image_url %}
+            <img src="{{ product.image_url }}" alt="{{ product.title }}">
+            {% else %}
+            <img src="/static/placeholder.jpg" alt="{{ product.title }}">
+            {% endif %}
+            <div class="card-content">
+                <h3>{{ product.title }}</h3>
+                <p>{{ product.description }}</p>
+                {% if product.price %}
+                <div class="price">€{{ product.price }}</div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+<!-- ============================================================ -->
+<!-- templates/tenant/products.html -->
+<!-- ============================================================ -->
+
+{% extends "tenant/base.html" %}
+
+{% block title %}Products - {{ domain }}{% endblock %}
+
+{% block content %}
+<h1 style="font-size: 2.5rem; margin-bottom: 2rem;">Our Products</h1>
+
+<div class="grid">
+    {% for product in products %}
+    <div class="card">
+        {% if product.image_url %}
+        <img src="{{ product.image_url }}" alt="{{ product.title }}">
+        {% else %}
+        <img src="/static/placeholder.jpg" alt="{{ product.title }}">
+        {% endif %}
+        <div class="card-content">
+            <h3>{{ product.title }}</h3>
+            <p>{{ product.description }}</p>
+            {% if product.price %}
+            <div class="price">€{{ product.price }}</div>
+            <a href="/products/{{ product.id }}" class="btn">View Details</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if products|length == 0 %}
+<p style="text-align: center; color: #6b7280; padding: 4rem;">
+    No products available yet. Check back soon!
+</p>
+{% endif %}
+{% endblock %}
+
+<!-- ============================================================ -->
+<!-- templates/tenant/login.html -->
+<!-- ============================================================ -->
+
+{% extends "tenant/base.html" %}
+
+{% block title %}Login - {{ domain }}{% endblock %}
+
+{% block content %}
+<div style="max-width: 400px; margin: 4rem auto;">
+    <h1 style="text-align: center; margin-bottom: 2rem;">Login</h1>
+
+    {% if error %}
+    <div style="background: #fee2e2; border: 1px solid #ef4444; color: #991b1b; padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1.5rem;">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <form action="/login" method="POST" style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
+            <input
+                    type="email"
+                    name="email"
+                    required
+                    style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px;">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Password</label>
+            <input
+                    type="password"
+                    name="password"
+                    required
+                    style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px;">
+        </div>
+
+        <button type="submit" class="btn" style="width: 100%;">
+            Sign In
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+<!-- ============================================================ -->
+<!-- templates/tenant/dashboard.html -->
+<!-- ============================================================ -->
+
+{% extends "tenant/base.html" %}
+
+{% block title %}Dashboard - {{ domain }}{% endblock %}
+
+{% block content %}
+<h1>Dashboard</h1>
+
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 2rem 0;">
+    <div class="card" style="cursor: pointer;" onclick="location.href='/dashboard/products'">
+        <div class="card-content">
+            <h3>Products</h3>
+            <div class="price">{{ product_count }}</div>
+            <p>Manage your products</p>
+        </div>
+    </div>
+
+    <div class="card" style="cursor: pointer;" onclick="location.href='/dashboard/services'">
+        <div class="card-content">
+            <h3>Services</h3>
+            <div class="price">{{ service_count }}</div>
+            <p>Manage your services</p>
+        </div>
+    </div>
+
+    <div class="card" style="cursor: pointer;" onclick="location.href='/dashboard/posts'">
+        <div class="card-content">
+            <h3>Posts</h3>
+            <div class="price">{{ post_count }}</div>
+            <p>Manage blog posts</p>
+        </div>
+    </div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 2rem 0;">
+    <div class="card" style="cursor: pointer;" onclick="location.href='/dashboard/media'">
+        <div class="card-content">
+            <h3>Media Library</h3>
+            <p>Upload and manage images, videos</p>
+        </div>
+    </div>
+
+    <div class="card" style="cursor: pointer;" onclick="location.href='/dashboard/settings'">
+        <div class="card-content">
+            <h3>Settings</h3>
+            <p>Customize colors, logo, pages</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

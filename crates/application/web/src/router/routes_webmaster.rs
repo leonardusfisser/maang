@@ -1,10 +1,5 @@
-use actix_web::{HttpResponse, Responder, web};
-
-use crate::handlers_webmaster::{
-    self,
-    admin_webmaster,
-    public_webmaster,
-};
+use actix_web::web;
+use crate::handlers_webmaster;
 
 
 pub fn routing_webmaster(cfg: &mut web::ServiceConfig) {

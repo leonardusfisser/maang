@@ -24,9 +24,7 @@ tokio.workspace = true
 
 [features]
 default = []
-mongo-backend    = [
-    "mongodb/tokio-runtime",
-    "mongodb/rustls"]
+mongo-backend    = ["mongodb"]
 postgres-backend = [
     "sqlx/postgres",
     "sqlx/runtime-tokio-rustls",

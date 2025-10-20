@@ -1,4 +1,10 @@
-@import url(components/a.css);
-@import url(components/button.css);
-@import url(components/h1-6.css);
-@import url(components/input.css);
+:root {
+    --accent:               green;
+    --color-background:     black;
+    --color-border:         white;
+    --color-heading:        pink;
+    --color-main:           white;
+    --opacity:              0.8;
+    --radius:               10px;
+}
+

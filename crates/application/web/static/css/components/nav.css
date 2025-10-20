@@ -1,0 +1,33 @@
+@import url("../style.css");
+/* Reset list styling + horizontal layout (optional) */
+.nav-container-main ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1rem; }
+
+/* Remove underlines always */
+.nav-container-main a,
+.nav-container-main a:link,
+.nav-container-main a:visited,
+.nav-container-main a:hover,
+.nav-container-main a:active,
+.nav-container-main a:focus-visible {
+    text-decoration: none;
+}
+
+/* Base colors per group (visited stays the same) */
+.nav-links-admin a:link,
+.nav-links-admin a:visited { color: lightgreen; }
+
+.nav-links-public a:link,
+.nav-links-public a:visited { color: white; }
+
+/* Hover / focus = green (no purple visited state) */
+.nav-container-main a:hover,
+.nav-container-main a:focus-visible,
+.nav-container-main a:active {
+    color: var(--accent);
+}
+
+/* Keep accessible focus ring since underlines are off */
+.nav-container-main a:focus-visible {
+    outline: 2px solid green;
+    outline-offset: 2px;
+}

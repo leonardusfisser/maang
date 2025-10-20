@@ -1,3 +1,5 @@
+@import url("../style.css");
+
 input, select, textarea {
     background:     black;
     border:         1px solid grey;

@@ -9,8 +9,7 @@ pub async fn get() -> impl Responder {
     let body = format!(
         "# HELP http_requests_total Total requests handled\n\
          # TYPE http_requests_total counter\n\
-         http_requests_total {}\n",
-        count
+         http_requests_total {count}\n"
     );
     HttpResponse::Ok()
         .content_type("text/plain; version=0.0.4")

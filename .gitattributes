@@ -70,7 +70,7 @@
 
 # If you want to also ship example env + systemd/nginx templates, un-ignore:
 # (uncomment the lines below to include them in exports)
-# !/config/.env.example
+# !/config/env.txt
 # !/deploy/systemd/*.service
 # !/deploy/systemd/*.timer
 # !/deploy/nginx/*.conf
@@ -86,4 +86,4 @@
 # # add any external default static/templates you want shipped:
 # cp -r crates/application/web/static dist/lillpepe/static
 # cp -r crates/application/web/templates dist/lillpepe/templates
-# cp config/.env.example dist/lillpepe/.env.example
+# cp config/env.txt dist/lillpepe/env.txt

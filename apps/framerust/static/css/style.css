@@ -1,0 +1,10 @@
+:root {
+    --accent:               green;
+    --color-background:     black;
+    --color-border:         white;
+    --color-heading:        green;
+    --color-main:           white;
+    --opacity:              0.8;
+    --radius:               10px;
+}
+

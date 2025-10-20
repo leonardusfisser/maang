@@ -1,1 +1,2 @@
-#![allow(missing_docs, unused_imports)]
+mod session_store;
+pub use session_store::RedisSessionStore;

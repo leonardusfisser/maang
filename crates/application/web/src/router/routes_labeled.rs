@@ -1,9 +1,5 @@
-use crate::handlers_labeled::{
-    self,
-    admin_labeled,
-    public_labeled,
-};
-use actix_web::{web};
+use crate::handlers_labeled;
+use actix_web::web;
 
 pub fn routing_labeled(cfg: &mut web::ServiceConfig) {
     cfg.service(web::resource("/admin/labeled").route(web::get().to(handlers_labeled::admin_labeled::get)));

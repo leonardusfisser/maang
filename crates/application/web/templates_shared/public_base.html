@@ -6,43 +6,57 @@
     <meta name="robots" content="noindex,nofollow,noarchive,noimageindex,nosnippet">
     <meta name="googlebot" content="noindex,nofollow,noarchive">
 
-    <title>{{ title }}</title>
-
-    <link rel="preload" href="{{ base.css_critical }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="{{ base.css_critical }}"></noscript>
+    <title>{{ base.title }}</title>
 
     <link rel="preload" href="{{ base.css_style }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="{{ base.css_style }}"></noscript>
+
+    <link rel="preload" href="{{ base.css_default }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ base.css_default }}"></noscript>
+
     <link rel="manifest" href="/manifest.webmanifest">
 </head>
 <body>
+<div id="div-background">
+    <video id="video-background" autoplay muted loop playsinline preload="metadata">
+        <source src="/assets/backgrounds/background.mp4" type="video/mp4">
+    </video>
+</div>
+<header class="navbar_main">
+<!--    <nav class="nav-container">-->
+<!--        {{ base.shared_nav_main }}-->
+<!--    </nav>-->
 
-<header class="navbar glass">
-    <nav class="nav-container">
-        <ul class="nav-links">
-
-            //  PUBLIC {{ shared_public_nav }}
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/products">Products</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/media">Videos</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-
-            //  ADMIN {{ shared_admin_nav }}
-            <li><a href="/dashboard">Register</a></li>
-            <li><a href="/config">Register</a></li>
-            <li><a href="/metrics">Register</a></li>
-            <li><a href="/settings">Register</a></li>
-            <li><a href="/users">Register</a></li>
-            <li><a href="/version">Register</a></li>
+    <nav class="nav-container-main">
+        <ul class="nav-links-admin">
+            <li><a href="/dashboard">dashboard</a></li>
+            <li><a href="/config">register</a></li>
+            <li><a href="/metrics">metric</a></li>
+            <li><a href="/settings">settings</a></li>
+            <li><a href="/users">users</a></li>
+            <li><a href="/version">version</a></li>
+        </ul>
+        <ul class="nav-links-public">
+            <li><a href="/">home</a></li>
+            <li><a href="/about">about</a></li>
+            <li><a href="/products">products</a></li>
+            <li><a href="/services">services</a></li>
+            <li><a href="/media">videos</a></li>
+            <li><a href="/contact">contact</a></li>
+            <li><a href="/login">login</a></li>
+            <li><a href="/register">register</a></li>
         </ul>
     </nav>
 </header>
+
 {% block content %}{% endblock %}
+<footer class="glass">
+    <div class="copyright">
+        &copy; {{ base.current_year }} {{ base.powered_by }}
+    </div>
+</footer>
 <script src="../static/js/register-sw.js"></script>
+<script src="../static/js/csrf.js"></script>
 </body>
 </html>
 

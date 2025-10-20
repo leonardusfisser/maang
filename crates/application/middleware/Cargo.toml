@@ -1,0 +1,21 @@
+[package]
+name = "application-middleware"
+edition.workspace = true
+license.workspace = true
+publish = false
+rust-version.workspace = true
+version.workspace = true
+
+[dependencies]
+core-errors = { path = "../../core/errors" }
+domain-sessions = { path = "../../domain/sessions" }
+infrastructure-csrf = { path = "../../infrastructure/csrf" }
+infrastructure-session = { path = "../../infrastructure/session" }
+
+actix-web.workspace = true
+futures-util = "0.3"
+tracing.workspace = true
+rand.workspace = true
+
+[lints.rust]
+unreachable_code = "allow"

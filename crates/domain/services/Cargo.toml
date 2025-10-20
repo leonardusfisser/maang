@@ -1,20 +1,17 @@
 [package]
 name = "domain-services"
-edition.workspace = true
-license.workspace = true
-rust-version.workspace = true
-version.workspace = true
+edition.workspace       = true
+license.workspace       = true
+rust-version.workspace  = true
+version.workspace       = true
 
 [dependencies]
 actix-web.workspace = true
-askama.workspace = true
-serde.workspace = true
+askama.workspace    = true
+serde.workspace     = true
 thiserror.workspace = true
-tracing.workspace = true
-ulid.workspace = true
-
-application = { path = "../../application" }
-core-errors = { path = "../../core/errors" }
+tracing.workspace   = true
+ulid.workspace      = true
 
 [lints]
 workspace = true

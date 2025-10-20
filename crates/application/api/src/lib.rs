@@ -1,4 +1,4 @@
-#![allow(missing_docs, unused_imports)]
+#![allow(missing_docs, unused_imports, unreachable_code)]
 
 pub mod controllers;
 pub mod dto;

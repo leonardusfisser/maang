@@ -1,5 +1,6 @@
 use actix_web::{HttpResponse, Responder};
 
 pub async fn get() -> impl Responder {
-    HttpResponse::Ok().body("contact")
+
+    HttpResponse::Ok().body("public_contact.html")
 }

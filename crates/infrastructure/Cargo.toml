@@ -10,6 +10,7 @@ version.workspace = true
 default     = []
 infrastructure-db          = ["dep:infrastructure-db"]
 infrastructure-cache       = ["dep:infrastructure-cache"]
+infrastructure-csrf        = ["dep:infrastructure-csrf"]
 infrastructure-email       = ["dep:infrastructure-email"]
 infrastructure-jwt         = ["dep:infrastructure-jwt"]
 infrastructure-metrics     = ["dep:infrastructure-metrics"]

@@ -1,0 +1,492 @@
+<!-- ============================================================================
+     PARTIAL: Dashboard Overview
+     Route: GET /admin/partials/dashboard
+     ============================================================================ -->
+
+<!-- templates/admin/partials/dashboard.html -->
+<div>
+    <div class="page-header">
+        <h2>Dashboard</h2>
+        <p>Overview of all white labels and system metrics</p>
+    </div>
+
+    <!-- Metric Cards -->
+    <div class="metrics">
+        <div class="metric-card"
+             hx-get="/admin/partials/labels?status=white"
+             hx-target="#content">
+            <div class="metric-label">White Labels</div>
+            <div class="metric-value" style="color: #10b981;">{{ white_count }}</div>
+            <div class="metric-change positive">{{ white_change }}% from last week</div>
+        </div>
+
+        <div class="metric-card"
+             hx-get="/admin/partials/labels?status=gray"
+             hx-target="#content">
+            <div class="metric-label">Gray Labels</div>
+            <div class="metric-value" style="color: #f59e0b;">{{ gray_count }}</div>
+            <div class="metric-change">Payment overdue</div>
+        </div>
+
+        <div class="metric-card"
+             hx-get="/admin/partials/labels?status=black"
+             hx-target="#content">
+            <div class="metric-label">Black Labels</div>
+            <div class="metric-value" style="color: #ef4444;">{{ black_count }}</div>
+            <div class="metric-change">Defaulted accounts</div>
+        </div>
+
+        <div class="metric-card"
+             hx-get="/admin/partials/labels?status=red"
+             hx-target="#content">
+            <div class="metric-label">Red Labels</div>
+            <div class="metric-value" style="color: #6b7280;">{{ red_count }}</div>
+            <div class="metric-change">Deleted accounts</div>
+        </div>
+    </div>
+
+    <!-- Revenue Section -->
+    <div class="metrics">
+        <div class="metric-card">
+            <div class="metric-label">Monthly Recurring Revenue</div>
+            <div class="metric-value">€{{ mrr }}</div>
+            <div class="metric-change positive">+{{ mrr_growth }}% this month</div>
+        </div>
+
+        <div class="metric-card"
+             hx-get="/admin/partials/payments?tab=failed"
+             hx-target="#content">
+            <div class="metric-label">Failed Payments</div>
+            <div class="metric-value" style="color: #ef4444;">{{ failed_payments }}</div>
+            <div class="metric-change">Requires attention</div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-label">Total Storage Used</div>
+            <div class="metric-value">{{ storage_gb }} GB</div>
+            <div class="metric-change">{{ storage_percent }}% of capacity</div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-label">System Health</div>
+            <div class="metric-value" style="color: #10b981;">✓</div>
+            <div class="metric-change">All systems operational</div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Domain</th>
+                <th>Action</th>
+                <th>Admin</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for activity in recent_activity %}
+            <tr>
+                <td>{{ activity.timestamp }}</td>
+                <td>{{ activity.domain }}</td>
+                <td>{{ activity.action }}</td>
+                <td>{{ activity.admin }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ============================================================================
+     PARTIAL: Labels List
+     Route: GET /admin/partials/labels?status={white|gray|black|red|all}
+     ============================================================================ -->
+
+<!-- templates/admin/partials/labels.html -->
+<div>
+    <div class="page-header">
+        <h2>White Labels</h2>
+        <p>Manage all white label accounts</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab {% if status == 'all' %}active{% endif %}"
+                hx-get="/admin/partials/labels?status=all"
+                hx-target="#label-content">
+            All ({{ total_count }})
+        </button>
+        <button class="tab {% if status == 'white' %}active{% endif %}"
+                hx-get="/admin/partials/labels?status=white"
+                hx-target="#label-content">
+            Active ({{ white_count }})
+        </button>
+        <button class="tab {% if status == 'gray' %}active{% endif %}"
+                hx-get="/admin/partials/labels?status=gray"
+                hx-target="#label-content">
+            Overdue ({{ gray_count }})
+        </button>
+        <button class="tab {% if status == 'black' %}active{% endif %}"
+                hx-get="/admin/partials/labels?status=black"
+                hx-target="#label-content">
+            Defaulted ({{ black_count }})
+        </button>
+        <button class="tab {% if status == 'red' %}active{% endif %}"
+                hx-get="/admin/partials/labels?status=red"
+                hx-target="#label-content">
+            Deleted ({{ red_count }})
+        </button>
+    </div>
+
+    <!-- Search -->
+    <div style="margin-bottom: 1.5rem;">
+        <input type="search"
+               class="search-box"
+               name="q"
+               placeholder="Search domains..."
+               hx-get="/admin/partials/labels?status={{ status }}"
+               hx-trigger="keyup changed delay:500ms"
+               hx-target="#label-content">
+    </div>
+
+    <!-- Content -->
+    <div id="label-content">
+        {% if labels.len() > 0 %}
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Domain</th>
+                    <th>Created</th>
+                    <th>Last Payment</th>
+                    <th>Storage</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for label in labels %}
+                <tr>
+                    <td>
+                            <span class="badge badge-{{ label.status }}">
+                                {{ label.status | upper }}
+                            </span>
+                    </td>
+                    <td>
+                        <a href="/admin/labels/{{ label.id }}"
+                           hx-get="/admin/partials/labels/{{ label.id }}"
+                           hx-target="#content"
+                           hx-push-url="/admin/labels/{{ label.id }}">
+                            {{ label.domain }}
+                        </a>
+                    </td>
+                    <td>{{ label.created_at }}</td>
+                    <td>{{ label.last_payment }}</td>
+                    <td>{{ label.storage_mb }} MB</td>
+                    <td>
+                        <div class="actions">
+                            <a href="https://{{ label.domain }}"
+                               target="_blank"
+                               class="btn btn-sm btn-secondary">View</a>
+                            <button class="btn btn-sm btn-secondary"
+                                    hx-post="/admin/api/labels/{{ label.id }}/email"
+                                    hx-confirm="Send email to {{ label.domain }}?">
+                                Email
+                            </button>
+                            <button class="btn btn-sm btn-danger"
+                                    hx-delete="/admin/api/labels/{{ label.id }}"
+                                    hx-confirm="Delete {{ label.domain }}? This cannot be undone."
+                                    hx-target="closest tr"
+                                    hx-swap="outerHTML swap:1s">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-state-icon">📭</div>
+            <h3>No labels found</h3>
+            <p>No white labels match your current filter.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- ============================================================================
+     PARTIAL: Label Detail
+     Route: GET /admin/partials/labels/:id
+     ============================================================================ -->
+
+<!-- templates/admin/partials/label_detail.html -->
+<div>
+    <div class="page-header">
+        <h2>{{ label.domain }}</h2>
+        <p>
+            <span class="badge badge-{{ label.status }}">{{ label.status | upper }}</span>
+            Created {{ label.created_at }}
+        </p>
+    </div>
+
+    <!-- Quick Actions -->
+    <div style="margin-bottom: 2rem;">
+        <a href="https://{{ label.domain }}" target="_blank" class="btn btn-primary">
+            View Live Site
+        </a>
+        <button class="btn btn-secondary"
+                hx-post="/admin/api/labels/{{ label.id }}/suspend"
+                hx-confirm="Suspend {{ label.domain }}?">
+            Suspend Account
+        </button>
+        <button class="btn btn-danger"
+                hx-delete="/admin/api/labels/{{ label.id }}"
+                hx-confirm="Delete {{ label.domain }}? This cannot be undone.">
+            Delete Account
+        </button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active"
+                hx-get="/admin/partials/labels/{{ label.id }}/overview"
+                hx-target="#detail-content">
+            Overview
+        </button>
+        <button class="tab"
+                hx-get="/admin/partials/labels/{{ label.id }}/payments"
+                hx-target="#detail-content">
+            Payments
+        </button>
+        <button class="tab"
+                hx-get="/admin/partials/labels/{{ label.id }}/activity"
+                hx-target="#detail-content">
+            Activity Log
+        </button>
+    </div>
+
+    <!-- Tab Content -->
+    <div id="detail-content"
+         hx-get="/admin/partials/labels/{{ label.id }}/overview"
+         hx-trigger="load">
+        <!-- Loads via HTMX -->
+    </div>
+</div>
+
+<!-- ============================================================================
+     PARTIAL: Label Detail - Overview Tab
+     Route: GET /admin/partials/labels/:id/overview
+     ============================================================================ -->
+
+<!-- templates/admin/partials/label_detail_overview.html -->
+<div>
+    <!-- Subscription Info -->
+    <div style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem;">Subscription</h3>
+        <div class="metrics">
+            <div class="metric-card">
+                <div class="metric-label">Plan</div>
+                <div class="metric-value" style="font-size: 1.5rem;">{{ label.plan_type | upper }}</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Price</div>
+                <div class="metric-value" style="font-size: 1.5rem;">€{{ label.price }}/week</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Next Billing</div>
+                <div class="metric-value" style="font-size: 1.5rem;">{{ label.next_billing }}</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Payment Method</div>
+                <div class="metric-value" style="font-size: 1.5rem;">•••• {{ label.card_last4 }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Storage Usage -->
+    <div style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem;">Storage Usage</h3>
+        <div class="metrics">
+            <div class="metric-card">
+                <div class="metric-label">Images</div>
+                <div class="metric-value" style="font-size: 1.5rem;">{{ label.images_mb }} MB</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Videos</div>
+                <div class="metric-value" style="font-size: 1.5rem;">{{ label.videos_mb }} MB</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Database</div>
+                <div class="metric-value" style="font-size: 1.5rem;">{{ label.db_mb }} MB</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Total</div>
+                <div class="metric-value" style="font-size: 1.5rem;">{{ label.total_mb }} MB</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Stats -->
+    <div>
+        <h3 style="margin-bottom: 1rem;">Content</h3>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <td>Products</td>
+                    <td><strong>{{ label.products_count }}</strong></td>
+                </tr>
+                <tr>
+                    <td>Services</td>
+                    <td><strong>{{ label.services_count }}</strong></td>
+                </tr>
+                <tr>
+                    <td>Posts</td>
+                    <td><strong>{{ label.posts_count }}</strong></td>
+                </tr>
+                <tr>
+                    <td>Last Login</td>
+                    <td><strong>{{ label.last_login }}</strong></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================================
+     PARTIAL: Payments Page
+     Route: GET /admin/partials/payments?tab={upcoming|failed|history|webhooks}
+     ============================================================================ -->
+
+<!-- templates/admin/partials/payments.html -->
+<div>
+    <div class="page-header">
+        <h2>Payments</h2>
+        <p>Payment history and upcoming renewals</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab {% if tab == 'upcoming' %}active{% endif %}"
+                hx-get="/admin/partials/payments?tab=upcoming"
+                hx-target="#payment-content">
+            Upcoming ({{ upcoming_count }})
+        </button>
+        <button class="tab {% if tab == 'failed' %}active{% endif %}"
+                hx-get="/admin/partials/payments?tab=failed"
+                hx-target="#payment-content">
+            Failed ({{ failed_count }})
+        </button>
+        <button class="tab {% if tab == 'history' %}active{% endif %}"
+                hx-get="/admin/partials/payments?tab=history"
+                hx-target="#payment-content">
+            History
+        </button>
+        <button class="tab {% if tab == 'webhooks' %}active{% endif %}"
+                hx-get="/admin/partials/payments?tab=webhooks"
+                hx-target="#payment-content">
+            Webhooks
+        </button>
+    </div>
+
+    <div id="payment-content">
+        <!-- Tab-specific content loads here -->
+        {% if tab == 'failed' %}
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th>Domain</th>
+                    <th>Amount</th>
+                    <th>Failed Date</th>
+                    <th>Retry Count</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for payment in failed_payments %}
+                <tr>
+                    <td>{{ payment.domain }}</td>
+                    <td>€{{ payment.amount }}</td>
+                    <td>{{ payment.failed_date }}</td>
+                    <td>{{ payment.retry_count }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary"
+                                hx-post="/admin/api/labels/{{ payment.label_id }}/email">
+                            Contact
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- ============================================================================
+     PARTIAL: System Health
+     Route: GET /admin/partials/system?tab={overview|databases|logs|backups}
+     ============================================================================ -->
+
+<!-- templates/admin/partials/system.html -->
+<div>
+    <div class="page-header">
+        <h2>System Health</h2>
+        <p>Monitor system status and performance</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab {% if tab == 'overview' %}active{% endif %}"
+                hx-get="/admin/partials/system?tab=overview"
+                hx-target="#system-content">
+            Overview
+        </button>
+        <button class="tab {% if tab == 'databases' %}active{% endif %}"
+                hx-get="/admin/partials/system?tab=databases"
+                hx-target="#system-content">
+            Databases
+        </button>
+        <button class="tab {% if tab == 'logs' %}active{% endif %}"
+                hx-get="/admin/partials/system?tab=logs"
+                hx-target="#system-content">
+            Logs
+        </button>
+        <button class="tab {% if tab == 'backups' %}active{% endif %}"
+                hx-get="/admin/partials/system?tab=backups"
+                hx-target="#system-content">
+            Backups
+        </button>
+    </div>
+
+    <div id="system-content">
+        {% if tab == 'overview' %}
+        <div class="metrics">
+            <div class="metric-card">
+                <div class="metric-label">Binary Version</div>
+                <div class="metric-value" style="font-size: 1.5rem;">{{ version }}</div>
+                <div class="metric-change">Deployed {{ deployed_at }}</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Uptime</div>
+                <div class="metric-value" style="font-size: 1.5rem;">{{ uptime }}</div>
+                <div class="metric-change positive">No downtime</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">CPU Usage</div>
+                <div class="metric-value" style="font-size: 1.5rem;">{{ cpu_percent }}%</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Memory Usage</div>
+                <div class="metric-value" style="font-size: 1.5rem;">{{ memory_percent }}%</div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>

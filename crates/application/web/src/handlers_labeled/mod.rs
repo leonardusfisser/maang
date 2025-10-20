@@ -1,4 +1,4 @@
-#![allow(missing_docs, unused_imports)]
+#![allow(missing_docs)]
 pub mod admin_labeled;
 pub mod public_labeled;
 

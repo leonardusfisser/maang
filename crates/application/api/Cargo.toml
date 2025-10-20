@@ -7,13 +7,21 @@ rust-version.workspace = true
 version.workspace = true
 
 [dependencies]
+core-errors = { path = "../../core/errors" }
+domain-sessions = { path = "../../domain/sessions" }
+infrastructure-session = { path = "../../infrastructure/session" }
+infrastructure-ratelimit = { path = "../../infrastructure/ratelimit" }
+infrastructure-csrf = { path = "../../infrastructure/csrf" }
+
 actix-web.workspace = true
 askama.workspace = true
+rand.workspace = true
 serde.workspace = true
+serde_json.workspace = true
 thiserror.workspace = true
 tracing.workspace = true
 ulid.workspace = true
 
 
-[lints]
-workspace = true
+[lints.rust]
+unreachable_code = "allow"

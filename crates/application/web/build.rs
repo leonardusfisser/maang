@@ -14,6 +14,7 @@ fn main() {
     let now = OffsetDateTime::now_utc();
     let formatted = now.format(&Rfc3339).unwrap_or_else(|_| "unknown".into());
 
-    println!("cargo:rustc-env=GIT_HASH={}", git_hash.trim());
-    println!("cargo:rustc-env=BUILD_TIME={}", formatted);
+    let git_hash = git_hash.trim();
+    println!("cargo:rustc-env=GIT_HASH={git_hash}");
+    println!("cargo:rustc-env=BUILD_TIME={formatted}");
 }

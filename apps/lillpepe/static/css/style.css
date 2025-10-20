@@ -1,0 +1,10 @@
+:root {
+    --accent:               pink;
+    --color-background:     black;
+    --color-border:         white;
+    --color-heading:        pink;
+    --color-main:           white;
+    --opacity:              0.8;
+    --radius:               10px;
+}
+

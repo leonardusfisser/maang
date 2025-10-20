@@ -1,16 +1,100 @@
-[build]
-# Combine both flags under one key so they merge correctly.
-rustflags = [
-    "-C", "link-arg=-s",   # Strip symbols from final binary (smaller release build)
-    "-Dwarnings"           # Deny all compiler warnings (CI-safe)
-]
+[build] # Global compiler behavior.
+incremental     = false # bool	Enable incremental compilation
+rustflags       = ["-C","link-arg=-s","-Dwarnings"] # array of strings	Extra flags passed to rustc (merged)
+target-dir      = "target"  # path	Directory for build artifacts (default: target/)
+# check-cfg	                # table	Configure --check-cfg options for conditional compilation
+# dep-info-basedir	        # path	Base dir for dep info generation
+# jobs                      # integer	Number of parallel jobs (default = CPU count)
+# Key	                    # Type	Description
+# offline	                # bool	Build without accessing network
 
-[env]
-# Disable backtraces in prod; you can set RUST_BACKTRACE=1 locally when debugging.
-RUST_BACKTRACE = "0"
+# pipelines	            # bool	Use jobserver pipelines when linking (nightly)
+# rustdocflags          # array of strings	Extra flags for rustdoc
+# target	            # string	Default compilation target triple
 
-[package]
-publish = ["my-internal-registry"]
+
+
+
+[env] # Set environment variables used by cargo and your crates.
+CARGO_INCREMENTAL       = "0"       # Disables incremental compilation.
+CARGO_TERM_COLOR        = "always"  # Forces Cargo to use colored terminal output.
+MY_APP_ENV    = { value = "prod", force = true } # force = true means Cargo will override any existing system variable of the same
+# PATH                    = { env = "PATH", force = true } # propagate system PATH
+RUST_BACKTRACE          = "1" # When a panic occurs, Rust normally prints a detailed stack trace if this is 1 or full.
+RUST_LOG                = "info,actix_web=info,sqlx=warn,tracing=info" # Controls logging verbosity for all crates using tracing or log.
+TMP_DIR                 = { value = "var/tmp", relative = true } # path relative to workspace root
+VAR                     = { value = "value", force = true, relative = true }
+# VAR = {
+    # value	    # string	The variable’s value
+    # force	    # bool	    If true, overrides system env of same name
+    # relative	# bool	    If true, interprets the value relative to workspace root
+    # unset	    # bool	    If true, removes the variable from the environment
+    # env	    # string	Pulls from another variable (env:"NAME")
+    # path	    # string	Path substitution shorthand (rare)
+# }
+
+# [future-incompat-report] # Control how Cargo reports deprecated behavior.
+# frequency = "always"
+
+
+# [http] # Configure network requests (downloads, crates.io, git).
+# cainfo	        # path	Custom CA bundle path
+# check-revoke	    # bool	Check certificate revocation lists
+# low-speed-limit   # integer	Slow connection threshold
+# multiplexing	    # bool	Allow HTTP/2 multiplexing
+# proxy	            # string	HTTP proxy URL
+# ssl-version	    # string	Force TLS version (rarely needed)
+# timeout	        # integer	Network timeout (seconds)
+# user-agent	    # string	Custom user agent
+
+
+[lints]
+workspace = true
+
+
+# [profile.<name>]
+# bench	    # Benchmarks
+# dev	    # Debug mode
+# doc	    # Doc builds
+# test	    # Unit/integration tests
+# release	# Optimized mode
+
+
+# [patch.crates-io] # Override specific crates globally (similar to workspace patch).
+# serde = { git = "https://github.com/serde-rs/serde", branch = "main" }
+
+
+# [profile.<name>] # Fine-tune compiler optimization profiles.
+# (Usually placed in Cargo.toml but valid here too for global overrides.)
+# bench	Benchmarks
+# dev	Debug mode
+# doc	Doc builds
+# release	Optimized mode
+# test	Unit/integration tests
+
 
 [registries.crates-io]
-protocol = "sparse"
+protocol = "sparse" # Optional internal registry configuration (future use)
+
+
+# [registries.my-internal-registry]
+# index = "https://my-registry.company.com/index"
+# token = "env:MY_REGISTRY_TOKEN"
+
+#[source.crates-io]
+# replace-with = "mirror"
+
+# [source.mirror]
+# registry = "https://mirror.company/registry"
+
+
+# [term] # Control Cargo’s terminal output.
+# color	    # "always", "auto", "never"	Control color output
+# progress	# bool	Show build progress bars
+# quiet	    # bool	Suppress output
+# verbose	# integer	Increase verbosity (0–3)
+
+
+# [unstable] # build-std | build-std-features | bindeps | timings | public-deps
+# build-std = ["std", "panic_abort"]
+# build-std-features = ["panic_immediate_abort"]
