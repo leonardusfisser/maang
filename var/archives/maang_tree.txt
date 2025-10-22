@@ -1,0 +1,457 @@
+/home/leon/maangframe
+├── apps
+│   ├── framerust
+│   │   ├── assets
+│   │   │   ├── backgrounds
+│   │   │   │   ├── background_0001.mp4
+│   │   │   │   ├── background_0002.mp4
+│   │   │   │   ├── background_0003.mp4
+│   │   │   │   ├── background_0004.mp4
+│   │   │   │   ├── background_0005.mp4
+│   │   │   │   ├── background_0006.mp4
+│   │   │   │   ├── background_0007.mp4
+│   │   │   │   ├── background_0008.mp4
+│   │   │   │   ├── background_0009.mp4
+│   │   │   │   ├── background_0010.mp4
+│   │   │   │   └── background.mp4
+│   │   │   ├── favicons
+│   │   │   ├── icons
+│   │   │   ├── images
+│   │   │   ├── pdf
+│   │   │   └── videos
+│   │   ├── Cargo.toml
+│   │   ├── db
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── robots.txt
+│   │   ├── sitemap.xml
+│   │   ├── src
+│   │   │   └── main.rs
+│   │   ├── static
+│   │   │   └── css
+│   │   │       └── style.css
+│   │   ├── uploads
+│   │   │   ├── backgrounds
+│   │   │   ├── icons
+│   │   │   ├── images
+│   │   │   ├── pdf
+│   │   │   └── videos
+│   │   └── VERSION
+│   └── lillpepe
+│       ├── assets
+│       │   ├── backgrounds
+│       │   │   ├── background_0001.mp4
+│       │   │   ├── background_0002.mp4
+│       │   │   ├── background_0003.mp4
+│       │   │   ├── background_0004.mp4
+│       │   │   ├── background_0005.mp4
+│       │   │   ├── background_0006.mp4
+│       │   │   ├── background_0007.mp4
+│       │   │   ├── background_0008.mp4
+│       │   │   ├── background_0009.mp4
+│       │   │   ├── background_0010.mp4
+│       │   │   └── background.mp4
+│       │   ├── favicons
+│       │   ├── icons
+│       │   ├── images
+│       │   ├── pdf
+│       │   └── videos
+│       ├── Cargo.toml
+│       ├── db
+│       ├── LICENSE
+│       ├── README.md
+│       ├── robots.txt
+│       ├── sitemap.xml
+│       ├── src
+│       │   └── main.rs
+│       ├── static
+│       │   └── css
+│       │       └── style.css
+│       ├── uploads
+│       │   ├── backgrounds
+│       │   ├── icons
+│       │   ├── images
+│       │   ├── pdf
+│       │   └── videos
+│       └── VERSION
+├── assets
+│   ├── audio
+│   ├── backgrounds
+│   │   ├── background_0000.mp4
+│   │   ├── background_0001.mp4
+│   │   ├── background_0002.mp4
+│   │   ├── background_0003.mp4
+│   │   ├── background_0004.mp4
+│   │   ├── background_0005.mp4
+│   │   ├── background_0006.mp4
+│   │   ├── background_0007.mp4
+│   │   ├── background_0008.mp4
+│   │   ├── background_0009.mp4
+│   │   ├── background_0010.mp4
+│   │   └── background.mp4
+│   ├── favicons
+│   ├── icons
+│   ├── images
+│   ├── pdf
+│   └── videos
+├── Cargo.lock
+├── Cargo.toml
+├── crates
+│   ├── application
+│   │   ├── api
+│   │   │   ├── Cargo.toml
+│   │   │   └── src
+│   │   │       ├── controllers
+│   │   │       │   ├── auth.rs
+│   │   │       │   ├── health.rs
+│   │   │       │   ├── mod.rs
+│   │   │       │   ├── tenants.rs
+│   │   │       │   └── users.rs
+│   │   │       ├── dto
+│   │   │       │   └── mod.rs
+│   │   │       └── lib.rs
+│   │   ├── Cargo.toml
+│   │   ├── cli
+│   │   │   ├── Cargo.toml
+│   │   │   └── src
+│   │   │       └── main.rs
+│   │   ├── middleware
+│   │   │   ├── Cargo.toml
+│   │   │   └── src
+│   │   │       ├── auth.rs
+│   │   │       ├── csrf.rs
+│   │   │       ├── lib.rs
+│   │   │       └── security_headers.rs
+│   │   ├── src
+│   │   │   └── lib.rs
+│   │   └── web
+│   │       ├── askama.toml
+│   │       ├── build.rs
+│   │       ├── Cargo.toml
+│   │       ├── components_html
+│   │       │   ├── admin_nav_main.html
+│   │       │   └── public_nav_main.html
+│   │       ├── src
+│   │       │   ├── handler_components
+│   │       │   │   ├── mod.rs
+│   │       │   │   └── shared_nav_main.rs
+│   │       │   ├── handlers_labeled
+│   │       │   │   ├── admin_labeled.rs
+│   │       │   │   ├── mod.rs
+│   │       │   │   └── public_labeled.rs
+│   │       │   ├── handlers_shared
+│   │       │   │   ├── admin_config.rs
+│   │       │   │   ├── admin_dashboard.rs
+│   │       │   │   ├── admin_logout.rs
+│   │       │   │   ├── admin_metrics.rs
+│   │       │   │   ├── admin_settings.rs
+│   │       │   │   ├── admin_users.rs
+│   │       │   │   ├── admin_version.rs
+│   │       │   │   ├── mod.rs
+│   │       │   │   ├── public_about.rs
+│   │       │   │   ├── public_base.rs
+│   │       │   │   ├── public_contact.rs
+│   │       │   │   ├── public_login.rs
+│   │       │   │   ├── public_media.rs
+│   │       │   │   ├── public_posts.rs
+│   │       │   │   ├── public_products.rs
+│   │       │   │   ├── public_services.rs
+│   │       │   │   └── public_signup.rs
+│   │       │   ├── handlers_webmaster
+│   │       │   │   ├── admin_webmaster.rs
+│   │       │   │   ├── mod.rs
+│   │       │   │   └── public_webmaster.rs
+│   │       │   ├── lib.rs
+│   │       │   ├── router
+│   │       │   │   ├── mod.rs
+│   │       │   │   ├── routes_labeled.rs
+│   │       │   │   ├── routes_shared.rs
+│   │       │   │   └── routes_webmaster.rs
+│   │       │   └── server
+│   │       │       ├── mod.rs
+│   │       │       └── start.rs
+│   │       ├── static
+│   │       │   ├── admin
+│   │       │   ├── browserconfig.xml
+│   │       │   ├── css
+│   │       │   │   ├── components
+│   │       │   │   │   ├── a.css
+│   │       │   │   │   ├── button.css
+│   │       │   │   │   ├── h1-6.css
+│   │       │   │   │   ├── input.css
+│   │       │   │   │   └── nav.css
+│   │       │   │   ├── default.css
+│   │       │   │   └── style.css
+│   │       │   ├── fonts
+│   │       │   ├── google123abc.html
+│   │       │   ├── html
+│   │       │   │   ├── 404.html
+│   │       │   │   ├── 500.html
+│   │       │   │   ├── maintenance.html
+│   │       │   │   └── offline.html
+│   │       │   ├── humans.txt
+│   │       │   ├── js
+│   │       │   │   ├── csrf.js
+│   │       │   │   ├── main.js
+│   │       │   │   └── register-sw.js
+│   │       │   ├── manifest.webmanifest
+│   │       │   ├── robots.txt
+│   │       │   ├── sitemap.xml
+│   │       │   └── sw.js
+│   │       ├── templates_labeled
+│   │       │   ├── admin_labeled.html
+│   │       │   └── public_labeled.html
+│   │       ├── templates_shared
+│   │       │   ├── admin_config.html
+│   │       │   ├── admin_dashboard.html
+│   │       │   ├── admin_metrics.html
+│   │       │   ├── admin_settings.html
+│   │       │   ├── admin_users.html
+│   │       │   ├── admin_version.html
+│   │       │   ├── public_about.html
+│   │       │   ├── public_base.html
+│   │       │   ├── public_contact.html
+│   │       │   ├── public_home.html
+│   │       │   ├── public_login.html
+│   │       │   ├── public_media.html
+│   │       │   ├── public_products.html
+│   │       │   ├── public_services.html
+│   │       │   └── public_signup.html
+│   │       └── templates_webmaster
+│   │           ├── admin_webmaster.html
+│   │           └── public_webmaster.html
+│   ├── core
+│   │   ├── Cargo.toml
+│   │   ├── config
+│   │   │   ├── Cargo.toml
+│   │   │   └── src
+│   │   │       ├── app_config.rs
+│   │   │       ├── lib.rs
+│   │   │       ├── types.rs
+│   │   │       └── validate.rs
+│   │   ├── errors
+│   │   │   ├── Cargo.toml
+│   │   │   └── src
+│   │   │       ├── app_errors.rs
+│   │   │       ├── csrf_errors.rs
+│   │   │       ├── domain_error.rs
+│   │   │       ├── env_errors.rs
+│   │   │       ├── http_error.rs
+│   │   │       ├── infra_error.rs
+│   │   │       ├── lib.rs
+│   │   │       └── session_error.rs
+│   │   ├── observability
+│   │   │   ├── Cargo.toml
+│   │   │   └── src
+│   │   │       ├── lib.rs
+│   │   │       ├── metrics.rs
+│   │   │       └── tracing_init.rs
+│   │   ├── src
+│   │   │   ├── lib.rs
+│   │   │   ├── load.rs
+│   │   │   ├── types.rs
+│   │   │   └── validate.rs
+│   │   └── utils
+│   │       ├── Cargo.toml
+│   │       └── src
+│   │           ├── hashing.rs
+│   │           ├── ids.rs
+│   │           ├── lib.rs
+│   │           ├── storage_fallback.rs
+│   │           └── time.rs
+│   ├── domain
+│   │   ├── Cargo.toml
+│   │   ├── media
+│   │   │   ├── Cargo.toml
+│   │   │   ├── model.rs
+│   │   │   ├── queries.rs
+│   │   │   ├── repo.rs
+│   │   │   └── src
+│   │   │       └── lib.rs
+│   │   ├── products
+│   │   │   ├── Cargo.toml
+│   │   │   ├── model.rs
+│   │   │   ├── queries.rs
+│   │   │   ├── repo.rs
+│   │   │   └── src
+│   │   │       └── lib.rs
+│   │   ├── services
+│   │   │   ├── Cargo.toml
+│   │   │   ├── model.rs
+│   │   │   ├── queries.rs
+│   │   │   ├── repo.rs
+│   │   │   └── src
+│   │   │       └── lib.rs
+│   │   ├── sessions
+│   │   │   ├── Cargo.toml
+│   │   │   └── src
+│   │   │       ├── lib.rs
+│   │   │       └── sessions.rs
+│   │   ├── src
+│   │   │   └── lib.rs
+│   │   ├── tenants
+│   │   │   ├── Cargo.toml
+│   │   │   ├── model.rs
+│   │   │   ├── queries.rs
+│   │   │   ├── repo.rs
+│   │   │   └── src
+│   │   │       └── lib.rs
+│   │   └── users
+│   │       ├── Cargo.toml
+│   │       ├── model.rs
+│   │       ├── queries.rs
+│   │       ├── repo.rs
+│   │       └── src
+│   │           └── lib.rs
+│   └── infrastructure
+│       ├── cache
+│       │   ├── Cargo.toml
+│       │   └── src
+│       │       └── lib.rs
+│       ├── Cargo.toml
+│       ├── csrf
+│       │   ├── Cargo.toml
+│       │   └── src
+│       │       ├── csrf.rs
+│       │       └── lib.rs
+│       ├── db
+│       │   ├── Cargo.toml
+│       │   └── src
+│       │       ├── lib.rs
+│       │       ├── pool.rs
+│       │       ├── repos
+│       │       │   ├── media_surreal.rs
+│       │       │   ├── mod.rs
+│       │       │   ├── products_surreal.rs
+│       │       │   ├── services_surreal.rs
+│       │       │   ├── tenants_surreal.rs
+│       │       │   └── users_surreal.rs
+│       │       └── tx.rs
+│       ├── email
+│       │   ├── Cargo.toml
+│       │   └── src
+│       │       └── lib.rs
+│       ├── jwt
+│       │   ├── Cargo.toml
+│       │   └── src
+│       │       └── lib.rs
+│       ├── metrics
+│       │   ├── Cargo.toml
+│       │   └── src
+│       │       └── lib.rs
+│       ├── oauth
+│       │   ├── Cargo.toml
+│       │   └── src
+│       │       └── lib.rs
+│       ├── payment
+│       │   ├── Cargo.toml
+│       │   └── src
+│       │       └── lib.rs
+│       ├── pwd
+│       │   ├── Cargo.toml
+│       │   └── src
+│       │       └── lib.rs
+│       ├── queue
+│       │   ├── Cargo.toml
+│       │   └── src
+│       │       └── lib.rs
+│       ├── ratelimit
+│       │   ├── Cargo.toml
+│       │   └── src
+│       │       ├── lib.rs
+│       │       └── rate_limiter.rs
+│       ├── session
+│       │   ├── Cargo.toml
+│       │   └── src
+│       │       ├── lib.rs
+│       │       └── session_store.rs
+│       ├── src
+│       │   └── lib.rs
+│       └── storage
+│           ├── Cargo.toml
+│           └── src
+│               └── lib.rs
+├── deny.toml
+├── deploy
+│   ├── nginx
+│   │   └── lillpepe.conf
+│   └── systemd
+│       ├── lillpepe@.service
+│       └── README.md
+├── dist
+│   └── BUILDINFO.md
+├── docs
+│   ├── ARCHITECTURE.md
+│   ├── DEPLOYMENT.md
+│   └── DEVELOPMENT.md
+├── editor
+│   ├── fish
+│   │   └── aliases.fish
+│   ├── helix
+│   │   └── config.toml
+│   └── vscode
+│       └── settings.json
+├── i18n
+│   └── en
+│       └── messages.json
+├── justfile
+├── legal
+│   ├── privacy.html
+│   └── terms.html
+├── LICENSE
+├── marketing
+│   ├── emails
+│   │   ├── reset_password.html
+│   │   └── welcome.html
+│   ├── landing.html
+│   └── pricing.html
+├── migrations
+├── monitor
+│   ├── netdata
+│   ├── README.md
+│   └── tracing
+├── ops
+│   ├── archive
+│   ├── migrates
+│   └── tenants
+├── README.md
+├── rust-toolchain.toml
+├── scripts
+│   ├── archieve_framework
+│   │   ├── copy_framework.sh
+│   │   ├── rsync_framework.sh
+│   │   └── tar_framework.sh
+│   └── smoke_test.sh
+├── tests
+│   ├── integration
+│   │   └── health_check.rs
+│   ├── load
+│   └── smoke
+│       └── build_ok.rs
+├── tools
+│   ├── loadtest
+│   └── xtask
+│       ├── Cargo.toml
+│       └── src
+│           └── main.rs
+├── var
+│   ├── archives
+│   │   ├── archive_maang.tar.gz
+│   │   ├── maang_cargotoml.tar.gz
+│   │   ├── maang_md.tar.gz
+│   │   ├── maang_rs.tar.gz
+│   │   └── maang_tree.txt
+│   ├── backups
+│   ├── db
+│   ├── logs
+│   │   ├── dev
+│   │   └── prod
+│   ├── system
+│   ├── tenants
+│   │   └── README.md
+│   ├── tmp
+│   └── users
+├── VERSION
+└── wasm
+
+173 directories, 282 files
