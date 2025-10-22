@@ -1,7 +1,0 @@
-[general]
-dirs = [
-    "components_html",
-    "templates_shared",
-    "templates_labeled",
-    "templates_webmaster",
-]

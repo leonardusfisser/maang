@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Home - {{ tenant_name }}{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <video autoplay muted loop class="hero-background">
+        <source src="{{ background_video }}" type="video/mp4">
+    </video>
+
+    <div class="hero-content">
+        <h1>Welcome to {{ tenant_name }}</h1>
+        <p>{{ tagline }}</p>
+        <a href="/products" class="btn-large">Explore Products</a>
+    </div>
+</section>
+
+<section class="features">
+    <h2>What We Offer</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>Quality Products</h3>
+            <p>Premium selection of products</p>
+        </div>
+        <div class="feature-card">
+            <h3>Expert Services</h3>
+            <p>Professional services tailored to you</p>
+        </div>
+        <div class="feature-card">
+            <h3>Customer Support</h3>
+            <p>24/7 support for all your needs</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

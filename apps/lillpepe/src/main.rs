@@ -1,13 +1,22 @@
-#[actix_web::main]
-async fn main() -> std::io::Result<()> {
-    core_observability::tracing_init::init();
+use frame::{init_tracing, AppConfig};
 
-    // dev: tries ENV_FILE/apps/lillpepe/.env/root .env; prod: real env only (inside core_config)
-    let _ = core_config::load_env("lillpepe");
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Initialize tracing
+    init_tracing("lillpepe")?;
 
-    let host = std::env::var("HOST").unwrap_or_else(|_| "127.0.0.1".to_string());
-    let port = std::env::var("PORT").unwrap_or_else(|_| "8081".to_string());
-    let addr = format!("{host}:{port}");
+    // Load configuration
+    let config = AppConfig::from_env()?;
+    config.validate()?;
 
-    application_web::server::run(&addr).await
+    // Create database pool
+    let db = infra::create_pool(&config.database).await?;
+
+    // Create Redis pool
+    let redis = infra::create_redis_pool(&config.redis).await?;
+
+    // Start server
+    web::start_server(config, db, redis).await?;
+
+    Ok(())
 }

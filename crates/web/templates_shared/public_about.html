@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}About - {{ tenant_name }}{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1>About {{ tenant_name }}</h1>
+</section>
+
+<section class="about-content">
+    <div class="about-section">
+        <h2>Our Story</h2>
+        <p>{{ description }}</p>
+    </div>
+
+    <div class="about-section">
+        <h2>Our Mission</h2>
+        <p>To provide exceptional products and services to our customers.</p>
+    </div>
+
+    <div class="about-section">
+        <h2>Our Values</h2>
+        <ul>
+            <h6>Quality First</h6>
+            <h6>Customer Focused</h6>
+            <h6>Innovation Driven</h6>
+            <h6>Integrity Always</h6>
+        </ul>
+    </div>
+</section>
+{% endblock %}

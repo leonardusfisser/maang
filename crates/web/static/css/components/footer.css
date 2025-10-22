@@ -1,0 +1,13 @@
+footer {
+    align-items: center;
+    background: var(--color-background);
+    bottom: 0;
+    color: var(--color-main);
+    display: flex;
+    height: auto;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    position: fixed;
+    z-index: 1;
+}

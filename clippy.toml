@@ -1,0 +1,30 @@
+# Cognitive complexity - force simple logic
+cognitive-complexity-threshold = 8  # Google uses 10, you use 8
+
+# Type complexity - minimal nesting
+type-complexity-threshold = 40  # Force simple types
+
+# Function arguments - tiny interfaces
+too-many-arguments-threshold = 3  # Force builder patterns
+
+# Boolean arguments - eliminate confusion
+max-fn-params-bools = 0  # Zero bools, use enums
+
+# Function length - micro-functions
+too-many-lines-threshold = 75  # Smaller than MAANG
+
+# Struct fields
+max-struct-bools = 1  # Minimal state
+
+# Similarity - prevent copy-paste
+allowed-similarity-threshold = 0.9
+
+# Single char names - only loop indices
+single-char-binding-names-threshold = 2
+
+# Performance
+vec-box-size-threshold = 2048
+trivial-copy-size-limit = 64
+
+# Documentation
+missing-docs-in-public-items = true

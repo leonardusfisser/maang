@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ tenant_name }}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/default.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+<header>
+    <nav>
+        <a href="/" class="logo">{{ tenant_name }}</a>
+        <a href="/about">about</a>
+        <a href="/products">products</a>
+        <a href="/services">services</a>
+        <a href="/media">media</a>
+        <a href="/contact">contact</a>
+        <a href="/login">login</a>
+        <a href="/signup">signup</a>
+    </nav>
+</header>
+
+<main>
+    <fieldset class="main">
+        {% block content %}{% endblock %}
+    </fieldset>
+</main>
+
+<footer>
+    <p>&copy; 2025 {{ tenant_name }}. All rights reserved.</p>
+</footer>
+
+<script src="/static/js/main.js"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

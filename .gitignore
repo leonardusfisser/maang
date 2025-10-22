@@ -1,91 +1,36 @@
-# ======================================
-# 🦀 MAANG FRAMEWORK GITIGNORE
-# ======================================
+# Rust
+target/
+Cargo.lock
 
-# Build artifacts
-/target/
-/dist/
-/wasm/target/
-/ops/**/target/
-/tools/**/target/
-/apps/**/target/
-/crates/**/target/
-*.d
-
-# Runtime data
-/var/archives/
-/var/tmp/
-/var/logs/
-/var/db/
-/var/system/
-/var/tenants/
-/var/users/
-/var/backups/
-**/DevBackups/
-**/maang_backups/
-
-# Temporary & generated files
-*.log
-*.pid
-*.sock
-*.gz
-*.tar
-*.tar.gz
-*.zip
-*.tmp
-*.bak
-*.old
-*.rs.bk
-*.archive
-
-# Environment & secrets
-.env
-.env.*
-!.env.example
-!.env.production.example
-
-# Machine-specific or transient
-.cargo-ok
-.DS_Store
-Thumbs.db
-Desktop.ini
-dist/BUILDINFO.md
-
-# IDEs & editors
+# IDE
 .idea/
 .vscode/
-helix/
-editor/
-.editorconfig
-*.code-workspace
 *.swp
+*.swo
+*~
 
-# Rust tooling
-Cargo.lock
-!apps/**/Cargo.lock
+# OS
+.DS_Store
+Thumbs.db
 
-# Test & coverage
-coverage/
-logs/
-test-results/
-target-*
+# Environment
+.env
+*.env
 
-# ======================================
-# Explicitly Keep
-# ======================================
-!.env.example
-!VERSION
-!LICENSE
-!justfile
-!deny.toml
-!rust-toolchain.toml
-!docs/**
-!deploy/**
-!config/**
-!legal/**
-!marketing/**
-!migrations/**
-!scripts/**
-!tests/**
-!ops/**/*.service
-!ops/**/*.timer
+# Runtime
+var/db/*
+!var/db/.gitkeep
+var/logs/*
+!var/logs/dev/.gitkeep
+!var/logs/prod/.gitkeep
+var/tmp/*
+!var/tmp/.gitkeep
+var/backups/*
+!var/backups/.gitkeep
+var/system/*
+!var/system/.gitkeep
+
+# App-specific
+apps/*/db/*
+apps/*/uploads/*
+!apps/*/uploads/backgrounds/.gitkeep

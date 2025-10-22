@@ -1,67 +1,57 @@
-# ===================================================================
-# MAANGFRAME - deny.toml
-# Enforces dependency, license, and security policies workspace-wide.
-# Run with:
-#   cargo deny check all
-# ===================================================================
-
-# ------------------------------
-# BAN RULES
-# ------------------------------
-[bans]
-# Hard bans (absolutely forbidden)
-deny = [
-    { name = "anyhow" },    # dynamic errors, untyped - use thiserror
-    { name = "eyre" },      # same as anyhow
-    { name = "chrono" },    # replaced by time crate
+[graph]
+targets = [
+    { triple = "x86_64-unknown-linux-gnu" },
 ]
 
-# Warn if duplicates (keeps deps tree clean)
-multiple-versions = "warn"
+[advisories]
+db-path = "~/.cargo/advisory-db"
+db-urls = ["https://github.com/rustsec/advisory-db"]
+vulnerability = "deny"
+unmaintained = "warn"
+yanked = "deny"
+notice = "warn"
+ignore = []
 
-# Skip stdlib and proc-macros from version conflict checks
-skip = [
-    { name = "syn" },
-    { name = "quote" },
-    { name = "proc-macro2" },
-]
-
-# ------------------------------
-# LICENSE COMPLIANCE
-# ------------------------------
 [licenses]
-# Allow these licenses for dependencies
+unlicensed = "deny"
 allow = [
     "MIT",
     "Apache-2.0",
     "Apache-2.0 WITH LLVM-exception",
-    "BSD-2-Clause",
     "BSD-3-Clause",
     "ISC",
-    "MPL-2.0",
-    "Zlib",
-    "Unicode-3.0",
+    "Unicode-DFS-2016",
+]
+deny = [
+    "GPL-2.0",
+    "GPL-3.0",
+    "AGPL-3.0",
+]
+copyleft = "deny"
+allow-osi-fsf-free = "neither"
+default = "deny"
+confidence-threshold = 0.8
+
+[bans]
+multiple-versions = "warn"
+wildcards = "deny"
+allow-wildcard-paths = false
+highlight = "all"
+workspace-default-features = "allow"
+external-default-features = "allow"
+
+deny = [
+    { name = "chrono" },
+    { name = "openssl" },
 ]
 
-# Exclude workspace members from license checks
-[licenses.private]
-ignore = true
-
-# ------------------------------
-# SECURITY AUDIT (RUSTSEC)
-# ------------------------------
-[advisories]
-# use `cargo deny check advisories` to check RUSTSEC DB
-
-# ------------------------------
-# SOURCE CONTROL
-# ------------------------------
 [sources]
 unknown-registry = "deny"
-unknown-git = "warn"
-
-# Allow only crates.io
+unknown-git = "deny"
 allow-registry = ["https://github.com/rust-lang/crates.io-index"]
-
-# No git dependencies allowed
 allow-git = []
+```
+
+**`VERSION` file:**
+```
+0.1.0

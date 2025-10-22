@@ -1,0 +1,37 @@
+@import url(claude.css);
+@import url(default.css);
+@import url(components/a.css);
+@import url(components/button.css);
+@import url(components/fieldset.css);
+@import url(components/h1-6.css);
+@import url(components/header.css);
+@import url(components/input.css);
+@import url(components/main.css);
+@import url(components/nav.css);
+@import url(components/ul.css);
+@import url(components/video.css);
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+html, body {
+    background: transparent;
+    color: var(--color-main);
+    font-family: system-ui, sans-serif;
+    height: 100%;
+    margin: 0;
+    overflow-x: auto;
+    padding: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 100%;
+}
+
+
+
+
+
+
+

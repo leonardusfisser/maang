@@ -1,0 +1,7 @@
+[general]
+dirs = [
+    "templates_shared",
+    "templates_tenants",
+    "templates_components",
+    "templates_webmaster"
+]

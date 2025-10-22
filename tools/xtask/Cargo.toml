@@ -3,15 +3,11 @@ name = "xtask"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-publish = false
 rust-version.workspace = true
+publish = false
 
 [dependencies]
-clap.workspace = true
-fs_extra.workspace = true
-serde.workspace = true
-serde_json.workspace = true
-tracing.workspace = true
-tracing-subscriber.workspace = true
-thiserror.workspace = true
-walkdir.workspace = true
+# Add only what xtask needs (file ops, etc)
+
+[lints]
+workspace = true

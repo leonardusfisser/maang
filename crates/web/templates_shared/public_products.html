@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Products - {{ tenant_name }}{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1>Our Products</h1>
+</section>
+
+<section class="products-grid">
+    <p class="empty-state">No products available yet.</p>
+    <!-- Products will be loaded from database -->
+</section>
+{% endblock %}

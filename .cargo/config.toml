@@ -1,7 +1,7 @@
 [build] # Global compiler behavior.
 incremental     = false # bool	Enable incremental compilation
 rustflags       = ["-C","link-arg=-s","-Dwarnings"] # array of strings	Extra flags passed to rustc (merged)
-target-dir      = "target"  # path	Directory for build artifacts (default: target/)
+target-dir      = "target"  # path	Directory for build_test artifacts (default: target/)
 # check-cfg	                # table	Configure --check-cfg options for conditional compilation
 # dep-info-basedir	        # path	Base dir for dep info generation
 # jobs                      # integer	Number of parallel jobs (default = CPU count)
@@ -90,11 +90,11 @@ protocol = "sparse" # Optional internal registry configuration (future use)
 
 # [term] # Control Cargo’s terminal output.
 # color	    # "always", "auto", "never"	Control color output
-# progress	# bool	Show build progress bars
+# progress	# bool	Show build_test progress bars
 # quiet	    # bool	Suppress output
 # verbose	# integer	Increase verbosity (0–3)
 
 
-# [unstable] # build-std | build-std-features | bindeps | timings | public-deps
-# build-std = ["std", "panic_abort"]
-# build-std-features = ["panic_immediate_abort"]
+# [unstable] # build_test-std | build_test-std-features | bindeps | timings | public-deps
+# build_test-std = ["std", "panic_abort"]
+# build_test-std-features = ["panic_immediate_abort"]

@@ -1,0 +1,25 @@
+[package]
+name = "web"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+frame.workspace = true
+domain.workspace = true
+infra.workspace = true
+actix-web.workspace = true
+actix-files.workspace = true
+actix-governor.workspace = true
+actix-session.workspace = true
+askama.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+deadpool-postgres.workspace = true
+redis.workspace = true
+
+[lints]
+workspace = true

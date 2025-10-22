@@ -1,0 +1,9 @@
+main.container {
+    bottom: 36px;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 20px;
+}

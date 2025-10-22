@@ -1,0 +1,137 @@
+.admin-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stat-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #000;
+    margin: 0.5rem 0;
+}
+
+.stat-card a {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.stat-card a:hover {
+    text-decoration: underline;
+}
+
+.quick-actions {
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.quick-actions h2 {
+    margin: 0 0 1.5rem 0;
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.action-button {
+    background: #fff;
+    border: 2px solid #0066cc;
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    color: #0066cc;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.action-button:hover {
+    background: #0066cc;
+    color: #fff;
+}
+
+.admin-nav {
+    background: #000;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+.admin-nav .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-nav .logo {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.admin-nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.admin-nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.admin-nav a:hover {
+    color: #0066cc;
+}
+
+.nav-auth {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-auth span {
+    color: #ccc;
+}

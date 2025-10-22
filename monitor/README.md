@@ -1,1 +1,0 @@
-how to enable RUST_LOG, tracing levels, where spans are exported, how to ship to Netdata/Grafana/Tempo

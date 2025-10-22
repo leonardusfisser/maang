@@ -1,45 +1,16 @@
 [package]
 name = "framerust"
+version.workspace = true
 edition.workspace = true
 license.workspace = true
-publish = false
 rust-version.workspace = true
-version.workspace = true
 
 [dependencies]
-application            = { path = "../../crates/application" }
-application-api        = { path = "../../crates/application/api" }
-application-middleware = { path = "../../crates/application/middleware" }
-application-web        = { path = "../../crates/application/web" }
-core-config            = { path = "../../crates/core/config" }
-core-observability     = { path = "../../crates/core/observability" }
-core-errors            = { path = "../../crates/core/errors" }
-infrastructure-ratelimit = { path = "../../crates/infrastructure/ratelimit" }
-infrastructure-session   = { path = "../../crates/infrastructure/session" }
-
-actix-web.workspace             = true
-askama.workspace                = true
-# mongodb           = { workspace = true, optional = true }
-redis.workspace                 = true
-serde.workspace                 = true
-serde_json.workspace            = true
-# sqlx      = { workspace         = true, optional = true }
-surrealdb = { workspace         = true, optional = true }
-thiserror.workspace             = true
-time.workspace                  = true
-tokio.workspace                 = true
-tracing.workspace               = true
-tracing-subscriber.workspace    = true
-ulid.workspace                  = true
-uuid.workspace                  = true
+web.workspace = true
+frame.workspace = true
+infra.workspace = true
+tokio.workspace = true
+tracing.workspace = true
 
 [lints]
 workspace = true
-
-[features]
-default = []
-surreal-backend  = ["surrealdb"]
-# postgres-backend = ["sqlx/postgres", "sqlx/runtime-tokio-rustls", "sqlx/macros", "sqlx/time", "sqlx/uuid"]
-# mongo-backend    = ["mongodb/tokio-runtime", "mongodb/rustls"]
-
-
